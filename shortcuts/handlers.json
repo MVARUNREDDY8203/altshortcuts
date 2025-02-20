@@ -96,8 +96,8 @@
     "peerlist.io": {
         "search": ["input#react-select-peerlist-search-input"],
         "write": [
-            "#__next > div.bg-gray-00.w-full.__className_6ac6f9.__variable_793c88 > div.lg\\:pl-6.xl\\:pl-0 > div > div.hidden.lg\\:block > div > div.pr-6.flex.flex-col.justify-between.h-full.overflow-y-auto.hide-scrollbar > div.mt-6 > div > div.w-full.mt-4 > button",
-            "#modal-background-overlay > div > div > div > div.max-h-\\[300px\\].overflow-y-auto.p-1 > ul > li:nth-child(1) > button"
+            "#modal-background-overlay > div > div > div > div.max-h-\\[300px\\].overflow-y-auto.p-1 > ul > li:nth-child(1) > button",
+            "#__next > div.bg-gray-00.w-full.__className_6ac6f9.__variable_793c88 > div.lg\\:pl-6.xl\\:pl-0 > div > div.hidden.lg\\:block > div > div.pr-6.flex.flex-col.justify-between.h-full.overflow-y-auto.hide-scrollbar > div.mt-6 > div > div.w-full.mt-4 > button"
         ]
     },
     "www.amazon.in": {
