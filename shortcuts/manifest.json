@@ -1,0 +1,24 @@
+{
+    "name": "Quick Search & Write",
+    "description": "Shortcut keys for search and create buttons",
+    "version": "1.0",
+    "manifest_version": 3,
+    "permissions": ["scripting", "activeTab"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+      "default_popup": "popup.html"
+    },
+    "commands": {
+      "focus_search": {
+        "suggested_key": { "default": "Alt+S" },
+        "description": "Focus on search bar"
+      },
+      "click_write": {
+        "suggested_key": { "default": "Alt+W" },
+        "description": "Click the write/create button"
+      }
+    }
+}
+  

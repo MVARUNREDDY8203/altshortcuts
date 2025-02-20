@@ -1,0 +1,62 @@
+.logo {
+    font-size: 32px;
+}
+.header {
+    display: flex;
+    align-items: center;
+    height: 10vh;
+    padding-left: 40px;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: white;
+}
+.body {
+    background: linear-gradient(
+            180deg,
+            rgba(145, 224, 174, 0.2),
+            rgba(139, 164, 229, 0.2)
+        ),
+        #f3f7fa;
+    padding: 0 15% 0 15%; /* --> change this to padding later*/
+    height: 100%;
+}
+.footer {
+    display: flex;
+    align-items: center;
+    position: sticky;
+    bottom: 0;
+    background-color: white;
+    height: 4vh;
+}
+.inner_body {
+    min-height: 86vh;
+    display: flex;
+    justify-content: space-between;
+}
+.key {
+    border: 1px solid #e1e1e1;
+    background-color: #dedede;
+    font-weight: 500;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    border-radius: 5px;
+    padding: 5px;
+    max-height: 20px;
+    min-width: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.thumbnail {
+    margin-top: 15vh;
+    background-color: gray;
+    min-height: 250px;
+    min-width: 444px;
+}
+.plus {
+    margin-left: 2px;
+    margin-right: 2px;
+    font-weight: 700;
+    color: black;
+}
