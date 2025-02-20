@@ -1,21 +1,27 @@
 {
-    "name": "Quick Search & Write",
-    "description": "Shortcut keys for search and create buttons",
-    "version": "1.0",
     "manifest_version": 3,
-    "permissions": ["scripting", "activeTab"],
+    "name": "Your Extension Name",
+    "version": "1.0",
+    "permissions": ["activeTab", "scripting", "storage", "alarms"],
     "host_permissions": ["https://altshortcuts.pages.dev/*"],
     "background": {
         "service_worker": "background.js"
     },
+    "action": {
+        "default_popup": "popup.html"
+    },
     "commands": {
         "focus_search": {
-            "suggested_key": { "default": "Alt+S" },
-            "description": "Focus on search bar"
+            "suggested_key": {
+                "default": "Alt+S"
+            },
+            "description": "Focus the search input"
         },
-        "click_write": {
-            "suggested_key": { "default": "Alt+W" },
-            "description": "Click the write/create button"
+        "focus_write": {
+            "suggested_key": {
+                "default": "Alt+W"
+            },
+            "description": "Focus the write input"
         }
     }
 }
