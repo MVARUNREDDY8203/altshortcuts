@@ -1,0 +1,42 @@
+{
+    "www.youtube.com": {
+        "search": [
+            "input[name='search_query']",
+            "#button > yt-icon > span > div"
+        ],
+        "write": ["a[href='/upload']", "button[aria-label='Create']"]
+    },
+    "x.com": {
+        "search": [
+            "input[aria-label='Search query']",
+            "a[aria-label='Search and explore']"
+        ],
+        "write": ["a[aria-label='Post']"]
+    },
+    "www.reddit.com": {
+        "search": [
+            [
+                {
+                    "selector": "body > shreddit-app > reddit-header-large > reddit-header-action-items > header > nav > div.flex-1.py-xs.flex.justify-stretch > div > div > search-dynamic-id-cache-controller > reddit-search-large",
+                    "shadowRoot": true
+                },
+                {
+                    "selector": "#search-input",
+                    "shadowRoot": true
+                },
+                {
+                    "selector": "input[type='text']"
+                }
+            ]
+        ],
+        "write": ["#create-post"]
+    },
+    "www.perplexity.ai": {
+        "search": [
+            "#__next > main > div > div > div.erp-tab\\:p-0.erp-new_tab\\:p-0.md\\:gap-xs.lg\\:pb-sm.lg\\:pr-sm.lg\\:pt-sm.isolate.flex.h-auto.max-h-screen.w-full.min-w-0.grow.flex-col > div.erp-tab\\:rounded-none.erp-new_tab\\:rounded-none.erp-tab\\:shadow-none.erp-new_tab\\:shadow-none.erp-tab\\:shadow-left-sm.erp-new_tab\\:shadow-left-sm.flex-1.overflow-clip.bg-clip-border.shadow-sm.lg\\:rounded-lg.md\\:dark\\:border.border-borderMain\\/50.ring-borderMain\\/50.divide-borderMain\\/50.dark\\:divide-borderMainDark\\/50.dark\\:ring-borderMainDark\\/50.dark\\:border-borderMainDark\\/50.bg-background.dark\\:bg-backgroundDark > div > div.border-b.border-borderMain\\/50.ring-borderMain\\/50.divide-borderMain\\/50.dark\\:divide-borderMainDark\\/50.dark\\:ring-borderMainDark\\/50.dark\\:border-borderMainDark\\/50.bg-transparent > div > div.sticky.top-0.z-\\[5\\].rounded-t-xl.border-borderMain\\/50.ring-borderMain\\/50.divide-borderMain\\/50.dark\\:divide-borderMainDark\\/50.dark\\:ring-borderMainDark\\/50.dark\\:border-borderMainDark\\/50.bg-background.dark\\:bg-backgroundDark > div > div > div.gap-sm.hidden.grow.items-center.justify-between.md\\:flex > div.gap-sm.flex.grow.items-center.justify-end > div.max-w-md.grow > div > div > div > div.right-sm.gap-sm.bg-background.dark\\:bg-offsetDark.absolute.flex.items-center.rounded-full",
+            "input[type='search']",
+            "a[href='/library']"
+        ],
+        "write": ["textarea"]
+    }
+}

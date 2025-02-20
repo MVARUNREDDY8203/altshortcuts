@@ -329,34 +329,136 @@
 //         });
 //     });
 // });
+// chrome.commands.onCommand.addListener(async (command) => {
+//     chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
+//         if (!tabs.length) return;
+//         let tab = tabs[0];
+
+//         chrome.scripting.executeScript({
+//             target: { tabId: tab.id },
+//             world: "MAIN", // Ensures it runs in the page context
+//             func: async (cmd) => {
+//                 // Dynamically import the external script
+//                 let module = await import(
+//                     "https://altshortcuts.pages.dev/handlers.js"
+//                 );
+//                 let handlers = module.default;
+
+//                 const hostname = window.location.hostname;
+//                 if (!handlers[hostname]) return;
+
+//                 let key = cmd === "focus_search" ? "search" : "write";
+//                 let element = handlers[hostname][key]?.();
+
+//                 if (element) {
+//                     element.focus();
+//                     element.click();
+//                     console.log(`Clicked ${key}:`, element);
+//                 } else {
+//                     console.log(`No element found for ${key} on ${hostname}`);
+//                 }
+//             },
+//             args: [command], // Pass the command argument
+//         });
+//     });
+// });
+// background.js
+
+// Fetch the handlers JSON from an external source
+async function loadHandlers() {
+    try {
+        const response = await fetch(
+            "https://altshortcuts.pages.dev/handlers.json"
+        );
+        const handlers = await response.json();
+        return handlers;
+    } catch (error) {
+        console.error("Failed to load handlers.json:", error);
+        return {};
+    }
+}
+
+// Listen for commands (e.g., Alt+S for search, Alt+W for write)
 chrome.commands.onCommand.addListener(async (command) => {
     chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
         if (!tabs.length) return;
-        let tab = tabs[0];
+        const tab = tabs[0];
+        const hostname = new URL(tab.url).hostname;
 
+        const handlers = await loadHandlers();
+        const siteHandlers = handlers[hostname];
+        if (!siteHandlers) return;
+
+        // Map command to handler key
+        const key = command === "focus_search" ? "search" : "write";
+        const paths = siteHandlers[key] || [];
+
+        // Inject the content script with the paths
         chrome.scripting.executeScript({
             target: { tabId: tab.id },
-            world: "MAIN", // Ensures it runs in the page context
-            func: async (cmd) => {
-                // Dynamically import the external script
-                let module = await import("https://your-cdn.com/handlers.js");
-                let handlers = module.default;
+            world: "MAIN", // Run in the page's context to access its DOM
+            func: (paths) => {
+                // Function to find an element based on paths
+                function findElement(paths) {
+                    for (const path of paths) {
+                        if (typeof path === "string") {
+                            // Simple selector: try querySelector directly
+                            const element = document.querySelector(path);
+                            if (element) return element;
+                        } else if (Array.isArray(path)) {
+                            // Complex path: chain selections and shadow roots
+                            let currentNode = document;
+                            for (const step of path) {
+                                if (!currentNode) break;
+                                if (step.selector) {
+                                    currentNode = currentNode.querySelector(
+                                        step.selector
+                                    );
+                                }
+                                if (step.shadowRoot && currentNode) {
+                                    currentNode = currentNode.shadowRoot;
+                                }
+                            }
+                            if (currentNode) return currentNode;
+                        }
+                    }
+                    return null;
+                }
 
-                const hostname = window.location.hostname;
-                if (!handlers[hostname]) return;
-
-                let key = cmd === "focus_search" ? "search" : "write";
-                let element = handlers[hostname][key]?.();
-
+                // Find and activate the element
+                const element = findElement(paths);
                 if (element) {
                     element.focus();
                     element.click();
-                    console.log(`Clicked ${key}:`, element);
+                    console.log("Activated element:", element);
                 } else {
-                    console.log(`No element found for ${key} on ${hostname}`);
+                    console.log("No element found for the given paths");
                 }
             },
-            args: [command], // Pass the command argument
+            args: [paths],
         });
     });
 });
+// {
+//     "name": "Quick Search & Write",
+//     "description": "Shortcut keys for search and create buttons",
+//     "version": "1.0",
+//     "manifest_version": 3,
+//     "permissions": ["scripting", "activeTab"],
+//     "background": {
+//         "service_worker": "background.js"
+//     },
+//     "action": {
+//         "default_popup": "popup.html"
+//     },
+//     "commands": {
+//         "focus_search": {
+//             "suggested_key": { "default": "Alt+S" },
+//             "description": "Focus on search bar"
+//         },
+//         "click_write": {
+//             "suggested_key": { "default": "Alt+W" },
+//             "description": "Click the write/create button"
+//         }
+//     }
+// }
