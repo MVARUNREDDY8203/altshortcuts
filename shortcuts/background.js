@@ -546,12 +546,14 @@ chrome.commands.onCommand.addListener(async (command) => {
             func: (paths) => {
                 function findElement(paths) {
                     for (const path of paths) {
+                        console.log(path);
                         if (typeof path === "string") {
                             const element = document.querySelector(path);
                             if (element) return element;
                         } else if (Array.isArray(path)) {
                             let currentNode = document;
                             for (const step of path) {
+                                console.log(step);
                                 if (!currentNode) break;
                                 if (step.selector) {
                                     currentNode = currentNode.querySelector(
