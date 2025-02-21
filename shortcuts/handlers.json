@@ -32,11 +32,7 @@
         "write": ["#create-post"]
     },
     "www.perplexity.ai": {
-        "search": [
-            "#__next > main > div > div > div.erp-tab\\:p-0.erp-new_tab\\:p-0.md\\:gap-xs.lg\\:pb-sm.lg\\:pr-sm.lg\\:pt-sm.isolate.flex.h-auto.max-h-screen.w-full.min-w-0.grow.flex-col > div.erp-tab\\:rounded-none.erp-new_tab\\:rounded-none.erp-tab\\:shadow-none.erp-new_tab\\:shadow-none.erp-tab\\:shadow-left-sm.erp-new_tab\\:shadow-left-sm.flex-1.overflow-clip.bg-clip-border.shadow-sm.lg\\:rounded-lg.md\\:dark\\:border.border-borderMain\\/50.ring-borderMain\\/50.divide-borderMain\\/50.dark\\:divide-borderMainDark\\/50.dark\\:ring-borderMainDark\\/50.dark\\:border-borderMainDark\\/50.bg-background.dark\\:bg-backgroundDark > div > div.border-b.border-borderMain\\/50.ring-borderMain\\/50.divide-borderMain\\/50.dark\\:divide-borderMainDark\\/50.dark\\:ring-borderMainDark\\/50.dark\\:border-borderMainDark\\/50.bg-transparent > div > div.sticky.top-0.z-\\[5\\].rounded-t-xl.border-borderMain\\/50.ring-borderMain\\/50.divide-borderMain\\/50.dark\\:divide-borderMainDark\\/50.dark\\:ring-borderMainDark\\/50.dark\\:border-borderMainDark\\/50.bg-background.dark\\:bg-backgroundDark > div > div > div.gap-sm.hidden.grow.items-center.justify-between.md\\:flex > div.gap-sm.flex.grow.items-center.justify-end > div.max-w-md.grow > div > div > div > div.right-sm.gap-sm.bg-background.dark\\:bg-offsetDark.absolute.flex.items-center.rounded-full",
-            "input[type='search']",
-            "a[href='/library']"
-        ],
+        "search": ["input[type='search']", "a[href='/library']"],
         "write": ["textarea"]
     },
     "mail.google.com": {
@@ -113,7 +109,9 @@
         "search": ["input"]
     },
     "www.zomato.com": {
-        "search": ["input:nth-of-type(2)"]
+        "search": [
+            "#root > div > div.sc-ekkqgF.zNDxH > div.contents-wrapper > div.searchContainer > div > div.sc-18n4g8v-0.gAhmYY.sc-cZLAbK.cIKWEa > input"
+        ]
     },
     "www.bigbasket.com": {
         "search": [
