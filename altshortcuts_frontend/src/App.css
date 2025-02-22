@@ -6,10 +6,16 @@
     align-items: center;
     height: 10vh;
     padding-left: 40px;
-    position: sticky;
-    top: 0;
-    z-index: 2;
     background-color: white;
+}
+.blackbgsection1 {
+    background: rgb(18, 20, 22);
+    background: linear-gradient(
+        90deg,
+        rgba(18, 20, 22, 1) 26%,
+        rgba(40, 40, 40, 1) 77%,
+        rgba(18, 20, 22, 1) 93%
+    );
 }
 .body {
     background: linear-gradient(

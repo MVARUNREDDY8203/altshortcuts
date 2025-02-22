@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Your Extension Name",
+    "name": "Alt Shortcuts",
     "version": "1.0",
     "permissions": ["activeTab", "scripting", "storage", "alarms"],
     "host_permissions": ["https://altshortcuts.pages.dev/*"],
@@ -9,6 +9,12 @@
     },
     "action": {
         "default_popup": "popup.html"
+    },
+    "icons": {
+        "16": "icons/icon16.png",
+        "32": "icons/icon32.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
     },
     "commands": {
         "focus_search": {
@@ -22,6 +28,27 @@
                 "default": "Alt+W"
             },
             "description": "Focus the write input"
+        },
+        "adjacent_tab_right": {
+            "suggested_key": {
+                "default": "Alt+R"
+            },
+            "description": "New tab to the right"
+        },
+        "adjacent_tab_left": {
+            "suggested_key": {
+                "default": "Alt+L"
+            },
+            "description": "New tab to the left"
+        },
+        "move_tab_right": {
+            "description": "Move to the tab on the right"
+        },
+        "move_tab_left": {
+            "description": "Move to the tab on the left"
+        },
+        "delete_tab": {
+            "description": "Delete the current tab"
         }
     }
 }
