@@ -295,11 +295,31 @@ function MainContent() {
             <Section1></Section1>
             <Section2></Section2>
             <Section3></Section3>
+            <Section4></Section4>
             <div>test</div>
         </>
     );
 }
 function Section3() {
+    return (
+        <div
+            style={{
+                width: "90%",
+                display: "flex",
+                marginLeft: "auto",
+                marginRight: "auto",
+                boxSizing: "border-box",
+                padding: "0px 120px",
+                justifyContent: "space-between",
+                height: "100vh",
+            }}
+        >
+            <div>video</div>
+            <div></div>
+        </div>
+    );
+}
+function Section4() {
     return (
         <>
             <div
@@ -394,7 +414,7 @@ function Section3() {
                         delete tab at index
                         <br></br>
                         <br></br>
-                        3. Move to the next / prev tab: actually provided by
+                        3. Switch to the next / prev tab: actually provided by
                         default by Chrome, most people don't know about it.
                     </span>
                 </div>
@@ -556,12 +576,16 @@ function Section1() {
         { key: "ALT + S", desc: "Jump to Search" },
         { key: "ALT + W", desc: "Jump to Write/Compose" },
         { key: "ALT + R", desc: "Open new tab to Right " },
-        { key: "ALT + L", desc: "Open new tab to Left" },
-        { key: "ALT + ->", desc: "Move forward in history" },
-        { key: "ALT + <-", desc: "Move backward in history" },
-        { key: "ALT + E", desc: "Move to the adjacent-right tab" },
-        { key: "ALT + Q", desc: "Move to the adjacent-left tab" },
-        { key: "ALT + D", desc: "Close the current tab" },
+        { key: "ALT + U", desc: "Scroll to the top of the page" },
+        { key: "ALT + V", desc: "Scroll to the bottom of the page" },
+        { key: "ALT + T", desc: "Switch to last used tab" },
+        {
+            key: "ALT + G",
+            desc: "Open Google Homepage and close all other tabs",
+        },
+        { key: "ALT + D", desc: "Duplicate tab" },
+        { key: "ALT + M", desc: "Mute / Unmute tab" },
+        { key: "ALT + P", desc: "Pin / Unpin tab" },
     ];
     return (
         <div
@@ -577,14 +601,12 @@ function Section1() {
                 style={{
                     display: "flex",
                     justifyContent: "space-between",
-                    // backgroundColor: "#121416",
                     alignItems: "center",
                     width: "90%",
                     marginLeft: "auto",
                     marginRight: "auto",
-                    // height: "40vh",
                     borderRadius: "20px",
-                    padding: "100px 120px 100px 120px",
+                    padding: "60px 120px 60px 120px",
                     boxSizing: "border-box",
                     color: "white",
                 }}

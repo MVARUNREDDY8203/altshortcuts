@@ -5,7 +5,6 @@ async function loadHandlers() {
             "https://altshortcuts.pages.dev/handlers.json"
         );
         const handlers = await response.json();
-        // console.log("Successfully fetched handlers from server:", handlers); // Commented out for production
         return handlers;
     } catch (error) {
         console.error("Failed to load handlers.json:", error);
@@ -21,9 +20,6 @@ async function fetchAndCacheHandlers() {
             handlers: handlers,
             lastFetched: Date.now(),
         });
-        // console.log("Handlers cached at:", new Date().toLocaleTimeString()); // Commented out for production
-    } else {
-        // console.log("No handlers to cache - fetch failed"); // Commented out for production
     }
     return handlers;
 }
@@ -32,74 +28,65 @@ async function fetchAndCacheHandlers() {
 async function getHandlers() {
     const cached = await chrome.storage.local.get(["handlers", "lastFetched"]);
     if (cached.handlers) {
-        // console.log(
-        //     "Returning cached handlers, last fetched at:",
-        //     new Date(cached.lastFetched).toLocaleTimeString()
-        // ); // Commented out for production
-        return cached.handlers; // Use cached version regardless of age, as alarm handles updates
+        return cached.handlers;
     }
-    // console.log("No cache found, fetching handlers..."); // Commented out for production
-    // If no cache exists, fetch immediately
     const handlers = await fetchAndCacheHandlers();
-    return handlers || null; // Return null if fetch fails and no cache exists
+    return handlers || null;
 }
 
+// Track the last active tab
+let lastTabId = null;
+let currentTabId = null;
+
+chrome.tabs.onActivated.addListener((activeInfo) => {
+    if (currentTabId !== activeInfo.tabId) {
+        lastTabId = currentTabId; // Set lastTabId to the previous current tab
+        currentTabId = activeInfo.tabId; // Update currentTabId to the new active tab
+    }
+});
+
+// Clear lastTabId if it’s closed
+chrome.tabs.onRemoved.addListener((tabId) => {
+    if (tabId === lastTabId) {
+        lastTabId = null;
+    }
+});
 // Set up periodic fetching on extension startup
 chrome.runtime.onStartup.addListener(() => {
-    // console.log("Extension started, setting up refresh alarm"); // Commented out for production
-    // Create an alarm to fetch handlers every 60 minutes
     chrome.alarms.create("refreshHandlers", { periodInMinutes: 60 });
-
-    // Perform an initial fetch if no cache exists
     chrome.storage.local.get(["handlers"], (result) => {
         if (!result.handlers) {
-            // console.log("No cached handlers on startup, initiating fetch"); // Commented out for production
             fetchAndCacheHandlers();
-        } else {
-            // console.log(
-            //     "Cached handlers found on startup, last fetched:",
-            //     new Date(result.lastFetched).toLocaleTimeString()
-            // ); // Commented out for production
         }
     });
 });
 
+// Handle commands
 chrome.commands.onCommand.addListener(async (command) => {
-    // console.log("Command received:", command); // Commented out for production
-
-    // Handle existing focus commands
     if (command === "focus_search" || command === "focus_write") {
         const handlers = await getHandlers();
         if (!handlers) {
             console.error("No handlers available");
             return;
         }
-
         chrome.tabs.query(
             { active: true, currentWindow: true },
             async (tabs) => {
                 if (!tabs.length) return;
                 const tab = tabs[0];
                 const hostname = new URL(tab.url).hostname;
-                // console.log("Active tab hostname:", hostname); // Commented out for production
-
                 const siteHandlers = handlers[hostname];
                 if (!siteHandlers) {
-                    // console.log("No handlers for this hostname:", hostname); // Commented out for production
                     return;
                 }
-
                 const key = command === "focus_search" ? "search" : "write";
                 const paths = siteHandlers[key] || [];
-                // console.log(`Executing ${key} command with paths:`, paths); // Commented out for production
-
                 chrome.scripting.executeScript({
                     target: { tabId: tab.id },
                     world: "MAIN",
                     func: (paths) => {
                         function findElement(paths) {
                             for (const path of paths) {
-                                // console.log("Checking path:", path); // Commented out for production
                                 if (typeof path === "string") {
                                     const element =
                                         document.querySelector(path);
@@ -107,7 +94,6 @@ chrome.commands.onCommand.addListener(async (command) => {
                                 } else if (Array.isArray(path)) {
                                     let currentNode = document;
                                     for (const step of path) {
-                                        // console.log("Step:", step); // Commented out for production
                                         if (!currentNode) break;
                                         if (step.selector) {
                                             currentNode =
@@ -138,116 +124,120 @@ chrome.commands.onCommand.addListener(async (command) => {
                             }
                             return null;
                         }
-
                         const element = findElement(paths);
                         if (element) {
                             element.focus();
                             element.click();
-                            // console.log("Activated element:", element); // Commented out for production
-                        } else {
-                            // console.log("No element found for the given paths"); // Commented out for production
                         }
                     },
                     args: [paths],
                 });
             }
         );
-    }
-
-    // Handle new tab commands
-    else if (
-        command === "adjacent_tab_right" ||
-        command === "adjacent_tab_left"
-    ) {
+    } else if (command === "adjacent_tab_right") {
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             if (!tabs.length) return;
             const currentTab = tabs[0];
-            const currentIndex = currentTab.index;
-
-            // Determine the new tab's position
-            const newIndex =
-                command === "adjacent_tab_right"
-                    ? currentIndex + 1
-                    : currentIndex;
-
-            // Create the new tab
-            chrome.tabs.create(
-                {
-                    url: "chrome://newtab", // Default new tab page, replace with desired URL if needed
-                    index: newIndex,
-                    active: true, // Optional: Set to true if you want the new tab to be active
-                },
-                (newTab) => {
-                    // console.log(
-                    //     `New tab created at index ${newTab.index} with ID ${newTab.id}`
-                    // ); // Commented out for production
-                }
-            );
+            chrome.tabs.create({
+                url: "chrome://newtab",
+                index: currentTab.index + 1,
+                active: true,
+            });
         });
-    } else if (
-        command === "move_tab_right" ||
-        command === "move_tab_left" ||
-        command === "delete_tab"
-    ) {
+    } else if (command === "scroll_top") {
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             if (!tabs.length) return;
-            const currentTab = tabs[0];
-            const currentIndex = currentTab.index;
-
-            if (command === "move_tab_right" || command === "move_tab_left") {
-                // Get all tabs in the current window to determine bounds
-                chrome.tabs.query({ currentWindow: true }, (allTabs) => {
-                    if (!allTabs.length) return;
-                    const totalTabs = allTabs.length;
-                    let newIndex;
-
-                    if (command === "move_tab_right") {
-                        newIndex = (currentIndex + 1) % totalTabs; // Wrap around to first tab if at end
-                    } else {
-                        // move_tab_left
-                        newIndex = (currentIndex - 1 + totalTabs) % totalTabs; // Wrap around to last tab if at start
-                    }
-
-                    const targetTab = allTabs[newIndex];
-                    chrome.tabs.update(
-                        targetTab.id,
-                        { active: true },
-                        (updatedTab) => {
-                            // console.log(
-                            //     `Moved to tab at index ${newIndex} with ID ${updatedTab.id}`
-                            // ); // Commented out for production
-                        }
-                    );
-                });
-            } else if (command === "delete_tab") {
-                chrome.tabs.remove(currentTab.id, () => {
-                    if (chrome.runtime.lastError) {
-                        console.error(
-                            "Error deleting tab:",
-                            chrome.runtime.lastError
-                        );
-                    } else {
-                        // console.log(
-                        //     `Tab with ID ${currentTab.id} at index ${currentIndex} deleted`
-                        // ); // Commented out for production
-                    }
+            const tab = tabs[0];
+            chrome.scripting.executeScript({
+                target: { tabId: tab.id },
+                func: () => {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                },
+            });
+        });
+    } else if (command === "duplicate_tab") {
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            if (!tabs.length) return;
+            const tab = tabs[0];
+            chrome.tabs.duplicate(tab.id);
+        });
+    } else if (command === "mute_site") {
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            if (!tabs.length) return;
+            const tab = tabs[0];
+            chrome.tabs.get(tab.id, (tabInfo) => {
+                const muted = !tabInfo.mutedInfo.muted;
+                chrome.tabs.update(tab.id, { muted: muted });
+            });
+        });
+    } else if (command === "new_tab_and_close_other_tabs") {
+        chrome.tabs.create(
+            { url: "https://www.google.com", active: true },
+            (newTab) => {
+                chrome.tabs.query({ currentWindow: true }, (tabs) => {
+                    const tabsToRemove = tabs
+                        .filter((tab) => tab.id !== newTab.id)
+                        .map((tab) => tab.id);
+                    chrome.tabs.remove(tabsToRemove);
                 });
             }
+        );
+    } else if (command === "delete_tab") {
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            if (!tabs.length) return;
+            const tab = tabs[0];
+            chrome.tabs.remove(tab.id);
         });
+    } else if (command === "scroll_bottom") {
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            if (!tabs.length) return;
+            const tab = tabs[0];
+            chrome.scripting.executeScript({
+                target: { tabId: tab.id },
+                func: () => {
+                    window.scrollTo({
+                        top: document.body.scrollHeight,
+                        behavior: "smooth",
+                    });
+                },
+            });
+        });
+    } else if (command === "toggle_pin_tab") {
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            if (!tabs.length) return;
+            const tab = tabs[0];
+            chrome.tabs.update(tab.id, { pinned: !tab.pinned });
+        });
+    } else if (command === "switch_last_tab") {
+        if (lastTabId && lastTabId !== currentTabId) {
+            chrome.tabs.update(lastTabId, { active: true }, (tab) => {
+                if (chrome.runtime.lastError) {
+                    console.error(
+                        "Error switching to last tab:",
+                        chrome.runtime.lastError
+                    );
+                    lastTabId = null;
+                } else {
+                    // Swap current and last tab IDs for toggling
+                    const temp = currentTabId;
+                    currentTabId = lastTabId;
+                    lastTabId = temp;
+                }
+            });
+        }
     }
 });
 
+// Set up alarm for periodic handler refresh
 function setupAlarm() {
-    chrome.alarms.create("refreshHandlers", { periodInMinutes: 720 });
-    // console.log("Alarm created successfully"); // Commented out for production
+    chrome.alarms.create("refreshHandlers", { periodInMinutes: 60 });
 }
 
 setupAlarm();
 
-// Handle the alarm when it triggers
+// Handle alarm triggers
 chrome.alarms.onAlarm.addListener((alarm) => {
     if (alarm.name === "refreshHandlers") {
-        // console.log("Alarm triggered, refreshing handlers"); // Commented out for production
         fetchAndCacheHandlers();
     }
 });
