@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Dongle&display=swap");
+@import "tailwindcss";
 
 html {
     overflow: scroll;
@@ -10,15 +11,6 @@ body {
     height: 100%;
     font-family: "Dongle", sans-serif;
     font-size: 24px;
-}
-button {
-    border-radius: 10px;
-    background-color: #96ff65;
-    box-sizing: border-box;
-    padding: 10px;
-    font-size: 15px;
-    cursor: pointer;
-    color: #000000;
 }
 ::-webkit-scrollbar {
     width: 0; /* Remove scrollbar space */

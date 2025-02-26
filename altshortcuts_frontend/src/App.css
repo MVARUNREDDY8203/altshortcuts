@@ -1,3 +1,4 @@
+@import "tailwindcss";
 .logo {
     font-size: 32px;
 }
@@ -24,7 +25,7 @@
             rgba(139, 164, 229, 0.2)
         ),
         #f3f7fa;
-    padding: 0 15% 0 15%; /* --> change this to padding later*/
+    /* padding: 0 15% 0 15%; */
     height: 100%;
 }
 .footer {

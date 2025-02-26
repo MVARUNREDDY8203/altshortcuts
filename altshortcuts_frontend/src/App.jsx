@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 
 function App() {
@@ -5,290 +6,11 @@ function App() {
         <>
             <Header></Header>
             <MainContent></MainContent>
-            {/* <div className="body">
-                <div className="inner_body i_b_1">
-                    <div>
-                        <div className="thumbnail">thumbnail</div>
-                        <div
-                            style={{
-                                marginTop: "2vh",
-                            }}
-                        >
-                            <span
-                                style={{
-                                    fontSize: "20px",
-                                }}
-                            >
-                                Don't lift your hand off of the keyboard, use
-                            </span>
-
-                            <br></br>
-                            <span
-                                style={{
-                                    fontSize: "48px",
-                                    fontWeight: "500",
-                                    color: "#4F9355",
-                                }}
-                            >
-                                ALT Shortcuts
-                            </span>
-                        </div>
-                    </div>
-                    <div
-                        style={{
-                            marginTop: "14vh",
-                        }}
-                    >
-                        <Card
-                            svg={
-                                <svg
-                                    class="w-6 h-6 text-gray-800 dark:text-white"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-width="2"
-                                        d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"
-                                    />
-                                </svg>
-                            }
-                            key1={"ALT"}
-                            key2={"S"}
-                            title={"Search"}
-                            desc={"jump to searchbar"}
-                        ></Card>
-                        <Card
-                            svg={
-                                <svg
-                                    class="w-6 h-6 text-gray-800 dark:text-white"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"
-                                    />
-                                </svg>
-                            }
-                            key1={"ALT"}
-                            key2={"W"}
-                            title={"Quick Write"}
-                            desc={"jump to the inputs"}
-                        ></Card>
-                        <Card
-                            svg={
-                                <svg
-                                    class="w-6 h-6 text-gray-800 dark:text-white"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M19 12H5m14 0-4 4m4-4-4-4"
-                                    />
-                                </svg>
-                            }
-                            key1={"ALT"}
-                            key2={"E"}
-                            title={"Forward"}
-                            desc={"go forward in history"}
-                        ></Card>
-                        <Card
-                            svg={
-                                <svg
-                                    class="w-6 h-6 text-gray-800 dark:text-white"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M5 12h14M5 12l4-4m-4 4 4 4"
-                                    />
-                                </svg>
-                            }
-                            key1={"ALT"}
-                            key2={"Q"}
-                            title={"Backward"}
-                            desc={"go backward in history"}
-                        ></Card>
-                    </div>
-                </div>
-                <div className="inner_body">
-                    <div
-                        style={{
-                            backgroundColor: "white",
-                            borderRadius: "20px",
-                            marginTop: "14vh",
-                            minWidth: "280px",
-                            padding: "20px",
-                            marginBottom: "auto",
-                        }}
-                    >
-                        <Shortcuts
-                            Shortcut={"ALT + S"}
-                            desc={"Jump to search"}
-                        ></Shortcuts>
-                        <Shortcuts
-                            Shortcut={"ALT + W"}
-                            desc={"Jump to Input/Textarea"}
-                        ></Shortcuts>
-                        <Shortcuts
-                            Shortcut={"ALT + Q"}
-                            desc={"Go back in History"}
-                        ></Shortcuts>
-                        <Shortcuts
-                            Shortcut={"ALT + E"}
-                            desc={"Go Forward in History"}
-                        ></Shortcuts>
-                        <Shortcuts
-                            Shortcut={"ALT + R"}
-                            desc={"Open new tab to the right"}
-                        ></Shortcuts>
-                        <Shortcuts
-                            Shortcut={"ALT + R"}
-                            desc={"Open new tab to the right"}
-                        ></Shortcuts>
-                        <Shortcuts
-                            Shortcut={"ALT + R"}
-                            desc={"Open new tab to the right"}
-                        ></Shortcuts>
-                        <Shortcuts
-                            Shortcut={"ALT + R"}
-                            desc={"Open new tab to the right"}
-                        ></Shortcuts>
-                        <Shortcuts
-                            Shortcut={"ALT + R"}
-                            desc={"ALT "}
-                        ></Shortcuts>
-                    </div>
-                    <div
-                        style={{
-                            margin: "25vh 0px 0px 100px",
-                        }}
-                    >
-                        <span>
-                            Works on Your Favorite Websites. Designed
-                            specifically for the most used websites to solve the
-                            problem of
-                        </span>
-                        <br></br>
-                        <span
-                            style={{
-                                fontSize: "48px",
-                                fontWeight: "500",
-                                color: "#4F9355",
-                            }}
-                        >
-                            easily accessing the search bar.
-                        </span>
-                        <br></br>
-                        <br></br>
-                        <br></br>
-                        <span
-                            style={{
-                                color: "gray",
-                            }}
-                        >
-                            Doesn't work on your website?<br></br>
-                            Want a feature?<br></br>
-                            Create an issue, start contributing,<br></br>
-                            Its Open Source!!!
-                        </span>
-                    </div>
-                </div>
-            </div> */}
-            {/* <Footer></Footer> */}
             <div></div>
         </>
     );
 }
-function Card({ svg, key1, key2, title, desc }) {
-    return (
-        <div
-            style={{
-                backgroundColor: "#FFFFFF",
-                minHeight: "75px",
-                boxSizing: "border-box",
-                minWidth: "280px",
-                borderRadius: "12px",
-                padding: "15px 25px",
-                margin: "10px 0px",
-                border: "2px solid #E1E1E",
-                boxShadow: "0px 4px 50px rgba(0, 0, 0, 0.25)",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-            }}
-        >
-            <div
-                style={{
-                    display: "flex",
-                    alignItems: "center",
-                }}
-            >
-                <div>{svg}</div>
-                <div
-                    style={{
-                        paddingLeft: "10px",
-                    }}
-                >
-                    <div
-                        style={{
-                            fontSize: "20px",
-                        }}
-                    >
-                        {title}
-                    </div>
-                    <div
-                        style={{
-                            fontSize: "13px",
-                            color: "gray",
-                        }}
-                    >
-                        {desc}
-                    </div>
-                </div>
-            </div>
-            <div
-                style={{
-                    display: "flex",
-                    alignItems: "center",
-                }}
-            >
-                <div className="key">{key1}</div>
-                <div className="plus">{"+"}</div>
-                <div className="key">{key2}</div>
-            </div>
-        </div>
-    );
-}
+
 function MainContent() {
     return (
         <>
@@ -300,22 +22,153 @@ function MainContent() {
         </>
     );
 }
-function Section3() {
+
+const shortcuts = [
+    { key: "ALT + S", desc: "Jump to Search" },
+    { key: "ALT + W", desc: "Jump to Write/Compose" },
+    { key: "ALT + R", desc: "Open new tab to Right " },
+    { key: "ALT + U", desc: "Scroll to the top of the page" },
+    { key: "ALT + V", desc: "Scroll to the bottom of the page" },
+    { key: "ALT + T", desc: "Switch to last used tab" },
+    {
+        key: "ALT + G",
+        desc: "Open Google Homepage and close all other tabs",
+    },
+    { key: "ALT + D", desc: "Duplicate tab" },
+    { key: "ALT + M", desc: "Mute / Unmute tab" },
+    { key: "ALT + P", desc: "Pin / Unpin tab" },
+];
+function Section1() {
+    const texts1 = [
+        "Works on your favorite websites",
+        "Increase your productivity",
+        "It's Open Source",
+        "Quick Setup",
+        "Try It Now!",
+    ];
+
     return (
-        <div
-            style={{
-                width: "90%",
-                display: "flex",
-                marginLeft: "auto",
-                marginRight: "auto",
-                boxSizing: "border-box",
-                padding: "0px 120px",
-                justifyContent: "space-between",
-                height: "100vh",
-            }}
-        >
-            <div>video</div>
-            <div></div>
+        <div className="bg-white mx-20">
+            {/* black bg */}
+            <div className="flex justify-between items-center mx-auto rounded-3xl px-30 py-15 text-white blackbgsection1">
+                {/* Left side CTA and intro */}
+                <div>
+                    <span className="text-3xl font-bold block tracking-wider color-white">
+                        don't lift your hands off the keyboard, use
+                    </span>
+                    <span className="mb-4 text-7xl font-extrabold block text-violet-400">
+                        ALT Shortcuts
+                    </span>
+                    {texts1.map((t1, idx) => {
+                        return (
+                            <span
+                                className="text-gray-400 block -mt-4"
+                                key={idx}
+                            >
+                                {t1}
+                            </span>
+                        );
+                    })}
+                    <div className="mt-4 text-2xl">
+                        <button className="bg-green-500 text-black rounded-xl px-4">
+                            Github
+                        </button>
+                        <button className="ml-3 bg-green-500 text-black rounded-xl px-4">
+                            Chrome
+                        </button>
+                    </div>
+                </div>
+                {/* Shortcuts */}
+                <div className="bg-white text-black rounded-3xl py-10 px-10">
+                    {shortcuts.map((s, idx) => {
+                        return (
+                            <div
+                                key={idx}
+                                className="mt-[0.80rem] max-h-[2rem]"
+                            >
+                                <span className="text-2xl font-medium rem bg-neutral-300 px-3 rounded-md cursor-pointer border border-gray shadow-[0.20rem_0.20rem_0_#808080]">
+                                    {s.key}
+                                </span>
+                                <span className="text-2xl ml-5">{s.desc}</span>
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+        </div>
+    );
+}
+function Section2() {
+    const texts1 = [
+        "Add the chrome extension",
+        "Go to keyboard shortcuts",
+        "Add unconfigured shortcuts",
+    ];
+    return (
+        <div className="flex justify-between mx-50 my-60">
+            <div>
+                <video
+                    src={"assets/test.mp4"}
+                    width="500"
+                    height="300"
+                    controls="controls"
+                />
+            </div>
+            <div>
+                <span className="text-[6rem]">SetUp and Usage</span>
+                {texts1.map((t, idx) => {
+                    return (
+                        <span className="block -mt-2" key={idx}>
+                            {idx}
+                            {". "}
+                            {t}
+                        </span>
+                    );
+                })}
+            </div>
+        </div>
+    );
+}
+function Section3() {
+    const [openIdx, setOpenIdx] = useState(null);
+    function handleTileClick(idx) {
+        if (openIdx == idx) {
+            setOpenIdx(null);
+        } else {
+            setOpenIdx(idx);
+        }
+    }
+    return (
+        <div className="bg-zinc-300 flex-col items-center">
+            {/* accordion tiles */}
+            <div>
+                {shortcuts.map((item, idx) => {
+                    const isOpen = openIdx == idx;
+                    const isFirst = idx == 0;
+                    const isLast = idx == shortcuts.length - 1;
+                    return (
+                        <div
+                            key={idx}
+                            className={`
+                                ${
+                                    isOpen
+                                        ? "bg-black text-white h-[25rem] text-8xl"
+                                        : ""
+                                }
+                                border
+                                transiton-all
+                                duration-200
+                                border-gray-800
+                                px-50
+                                cursor-pointer flex w-full text-3xl hover:bg-black hover:text-white 
+                            `}
+                            onClick={() => handleTileClick(idx)}
+                        >
+                            {item.desc}
+                        </div>
+                    );
+                })}
+            </div>
         </div>
     );
 }
@@ -326,8 +179,7 @@ function Section4() {
                 style={{
                     width: "90%",
                     display: "flex",
-                    marginLeft: "auto",
-                    marginRight: "auto",
+                    margin: "100px auto",
                     boxSizing: "border-box",
                     padding: "0px 120px",
                     justifyContent: "space-between",
@@ -514,203 +366,6 @@ function Section4() {
         </>
     );
 }
-function Section2() {
-    const texts1 = [
-        "Add the chrome extension",
-        "Go to keyboard shortcuts",
-        "Add unconfigured shortcuts",
-    ];
-    return (
-        <div
-            style={{
-                // minHeight: "100vh",
-                display: "flex",
-                justifyContent: "space-between",
-                margin: "200px 200px 200px 200px",
-            }}
-        >
-            <div>
-                <video
-                    src={"assets/test.mp4"}
-                    width="500"
-                    height="300"
-                    controls="controls"
-                />
-            </div>
-            <div>
-                <span
-                    style={{
-                        fontSize: "100px",
-                    }}
-                >
-                    SetUp and Usage
-                </span>
-                {texts1.map((t, idx) => {
-                    return (
-                        <span
-                            style={{
-                                display: "block",
-                                marginTop: "-10px",
-                            }}
-                            key={idx}
-                        >
-                            {idx}
-                            {". "}
-                            {t}
-                        </span>
-                    );
-                })}
-            </div>
-        </div>
-    );
-}
-function Section1() {
-    const texts1 = [
-        "Works on your favorite websites",
-        "Increase your productivity",
-        "It's Open Source",
-        "Quick Setup",
-        "Try It Now!",
-    ];
-    const shortcuts = [
-        { key: "ALT + S", desc: "Jump to Search" },
-        { key: "ALT + W", desc: "Jump to Write/Compose" },
-        { key: "ALT + R", desc: "Open new tab to Right " },
-        { key: "ALT + U", desc: "Scroll to the top of the page" },
-        { key: "ALT + V", desc: "Scroll to the bottom of the page" },
-        { key: "ALT + T", desc: "Switch to last used tab" },
-        {
-            key: "ALT + G",
-            desc: "Open Google Homepage and close all other tabs",
-        },
-        { key: "ALT + D", desc: "Duplicate tab" },
-        { key: "ALT + M", desc: "Mute / Unmute tab" },
-        { key: "ALT + P", desc: "Pin / Unpin tab" },
-    ];
-    return (
-        <div
-            style={{
-                backgroundColor: "white",
-                marginTop: "10px",
-                marginBottom: "40px",
-            }}
-        >
-            {/* black bg */}
-            <div
-                className="blackbgsection1"
-                style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    width: "90%",
-                    marginLeft: "auto",
-                    marginRight: "auto",
-                    borderRadius: "20px",
-                    padding: "60px 120px 60px 120px",
-                    boxSizing: "border-box",
-                    color: "white",
-                }}
-            >
-                {/* Left side CTA and intro */}
-                <div>
-                    <span
-                        style={{
-                            color: "light-gray",
-                            fontWeight: "700",
-                            fontSize: "36px",
-                            display: "block", // Ensures it behaves like a separate line
-                            lineHeight: "35px", // Adjust to reduce spacing
-                            letterSpacing: "2px",
-                        }}
-                    >
-                        don't lift your hands off the keyboard, use
-                    </span>
-                    <span
-                        style={{
-                            color: "#A799FF",
-                            fontWeight: "700",
-                            fontSize: "60px",
-                            display: "block", // Keeps consistent control
-                            marginTop: "-10px", // Pulls text closer
-                        }}
-                    >
-                        ALT Shortcuts
-                    </span>
-                    {texts1.map((t1, idx) => {
-                        return (
-                            <span
-                                style={{
-                                    color: "gray",
-                                    // fontWeight: "700",
-                                    // fontSize: "px",
-                                    display: "block", // Keeps consistent control
-                                    marginTop: "-10px", // Pulls text closer
-                                    // key: idx,
-                                }}
-                            >
-                                {t1}
-                            </span>
-                        );
-                    })}
-                    <button
-                        style={{
-                            marginTop: "15px",
-                        }}
-                    >
-                        <a href="#">Github</a>
-                    </button>
-                    <button>Chrome</button>
-                </div>
-                {/* Shortcuts */}
-                <div
-                    style={{
-                        backgroundColor: "white",
-                        minHeight: "30vh",
-                        minWidth: "400px",
-                        borderRadius: "40px",
-                        color: "black",
-                        boxSizing: "border-box",
-                        padding: "40px",
-                    }}
-                >
-                    {shortcuts.map((s, idx) => {
-                        return (
-                            <div
-                                key={idx}
-                                style={{
-                                    display: "flex",
-                                    marginTop: "5px",
-                                }}
-                            >
-                                <span
-                                    style={{
-                                        background: "lightgray",
-                                        padding: "0px 8px",
-                                        borderRadius: "5px",
-                                        maxHeight: "28px",
-                                        border: "1px solid gray",
-                                        boxShadow: "4px 4px gray",
-                                        cursor: "pointer",
-                                    }}
-                                >
-                                    {s.key}
-                                </span>
-                                <span
-                                    style={{
-                                        fontSize: "24px",
-                                        marginLeft: "20px",
-                                    }}
-                                >
-                                    {s.desc}
-                                </span>
-                            </div>
-                        );
-                    })}
-                </div>
-            </div>
-        </div>
-    );
-}
 function Header() {
     return (
         <div className="header">
@@ -718,38 +373,5 @@ function Header() {
         </div>
     );
 }
-function Footer() {
-    return <div className="footer">Made with love by varun</div>;
-}
-function Shortcuts({ Shortcut, desc }) {
-    return (
-        <div
-            style={{
-                display: "flex",
-                alignItems: "center",
-                margin: "10px 0px",
-            }}
-        >
-            <div
-                style={{
-                    backgroundColor: "#dedede",
-                    padding: "5px",
-                    borderRadius: "5px",
-                    minWidth: "60px",
-                    textAlign: "center",
-                    boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.14)",
-                }}
-            >
-                {Shortcut}
-            </div>
-            <div
-                style={{
-                    paddingLeft: "10px",
-                }}
-            >
-                {desc}
-            </div>
-        </div>
-    );
-}
+
 export default App;
