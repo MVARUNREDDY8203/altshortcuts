@@ -18,25 +18,34 @@ function MainContent() {
             <Section2></Section2>
             <Section3></Section3>
             <Section4></Section4>
-            <div>test</div>
+            <div>made with love</div>
         </>
     );
 }
 
 const shortcuts = [
-    { key: "ALT + S", desc: "Jump to Search" },
-    { key: "ALT + W", desc: "Jump to Write/Compose" },
-    { key: "ALT + R", desc: "Open new tab to Right " },
-    { key: "ALT + U", desc: "Scroll to the top of the page" },
-    { key: "ALT + V", desc: "Scroll to the bottom of the page" },
-    { key: "ALT + T", desc: "Switch to last used tab" },
+    { key: "ALT + S", desc: "Jump to Search", src: "/alt_s.mp4" },
+    { key: "ALT + W", desc: "Jump to Write/Compose", src: "/alt_w.mp4" },
+    { key: "ALT + R", desc: "Open new tab to Right ", src: "/alt_r.mp4" },
+    {
+        key: "ALT + U",
+        desc: "Scroll to the top of the page",
+        src: "/alt_v_u.mp4",
+    },
+    {
+        key: "ALT + V",
+        desc: "Scroll to the bottom of the page",
+        src: "/alt_v_u.mp4",
+    },
+    { key: "ALT + T", desc: "Switch to last used tab", src: "/alt_t.mp4" },
     {
         key: "ALT + G",
         desc: "Open Google Homepage and close all other tabs",
+        src: "/alt_g.mp4",
     },
-    { key: "ALT + D", desc: "Duplicate tab" },
-    { key: "ALT + M", desc: "Mute / Unmute tab" },
-    { key: "ALT + P", desc: "Pin / Unpin tab" },
+    { key: "ALT + D", desc: "Duplicate tab", src: "/alt_d.mp4" },
+    { key: "ALT + M", desc: "Mute / Unmute tab", src: "/alt_m.mp4" },
+    { key: "ALT + P", desc: "Pin / Unpin tab", src: "/alt_p.mp4" },
 ];
 function Section1() {
     const texts1 = [
@@ -108,7 +117,7 @@ function Section2() {
         <div className="flex justify-between mx-50 my-60">
             <div>
                 <video
-                    src={"assets/test.mp4"}
+                    src={"/config-cut.mp4"}
                     width="500"
                     height="300"
                     controls="controls"
@@ -118,9 +127,7 @@ function Section2() {
                 <span className="text-[6rem]">SetUp and Usage</span>
                 {texts1.map((t, idx) => {
                     return (
-                        <span className="block -mt-2" key={idx}>
-                            {idx}
-                            {". "}
+                        <span className="block -mt-2 text-center" key={idx}>
                             {t}
                         </span>
                     );
@@ -152,7 +159,7 @@ function Section3() {
                             className={`
                                 ${
                                     isOpen
-                                        ? "bg-black text-white h-[25rem] text-8xl"
+                                        ? "bg-black text-white min-h-[20rem] text-8xl"
                                         : ""
                                 }
                                 border
@@ -160,11 +167,20 @@ function Section3() {
                                 duration-200
                                 border-gray-800
                                 px-50
-                                cursor-pointer flex w-full text-3xl hover:bg-black hover:text-white 
+                                cursor-pointer flex-col w-full text-3xl hover:bg-black hover:text-white 
                             `}
                             onClick={() => handleTileClick(idx)}
                         >
-                            {item.desc}
+                            <div>{item.desc}</div>
+                            {isOpen && (
+                                <video
+                                    className="mb-10"
+                                    src={`${item.src}`}
+                                    width="500"
+                                    height="300"
+                                    controls="controls"
+                                />
+                            )}
                         </div>
                     );
                 })}

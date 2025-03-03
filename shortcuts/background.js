@@ -241,3 +241,12 @@ chrome.alarms.onAlarm.addListener((alarm) => {
         fetchAndCacheHandlers();
     }
 });
+
+// first install redirect
+chrome.runtime.onInstalled.addListener((details) => {
+    if (details.reason === "install") {
+        chrome.tabs.create({
+            url: "https://altshortcuts.vercel.app/",
+        });
+    }
+});
