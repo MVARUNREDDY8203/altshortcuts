@@ -50,7 +50,7 @@
     },
     "www.linkedin.com": {
         "search": ["input[aria-label='Search']"],
-        "write": ["button#ember33"]
+        "write": ["button#ember36"]
     },
     "www.facebook.com": {
         "search": ["input[type='search']"],
