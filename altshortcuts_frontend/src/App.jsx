@@ -24,28 +24,144 @@ function MainContent() {
 }
 
 const shortcuts = [
-    { key: "ALT + S", desc: "Jump to Search", src: "/alt_s.mp4" },
-    { key: "ALT + W", desc: "Jump to Write/Compose", src: "/alt_w.mp4" },
-    { key: "ALT + R", desc: "Open new tab to Right ", src: "/alt_r.mp4" },
+    {
+        key: "ALT + S",
+        desc: "Jump to Search",
+        src: "./alt_s.webm",
+        iframe: (
+            <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/FCumqqW_6hI?si=wM7ogMJbDHEkrDVh"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+            ></iframe>
+        ),
+    },
+    {
+        key: "ALT + W",
+        desc: "Jump to Write/Compose",
+        src: "./alt_w.webm",
+        iframe: (
+            <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/AnNVB7s8Abs?si=BkzslDEbSbZ-Miej"
+                title="ALT+W: FOCUS ON WRITE"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;  web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+            ></iframe>
+        ),
+    },
+    { key: "ALT + R", desc: "Open new tab to Right ", src: "/alt_r.webm" },
     {
         key: "ALT + U",
         desc: "Scroll to the top of the page",
-        src: "/alt_v_u.mp4",
+        src: "/alt_v_u.webm",
+        iframe: (
+            <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/c74yL160Gm0?si=qreZfyVop0E4mCd_"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;  web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+            ></iframe>
+        ),
     },
     {
         key: "ALT + V",
         desc: "Scroll to the bottom of the page",
-        src: "/alt_v_u.mp4",
+        src: "/alt_v_u.webm",
+        iframe: (
+            <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/c74yL160Gm0?si=qreZfyVop0E4mCd_"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;  web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+            ></iframe>
+        ),
     },
-    { key: "ALT + T", desc: "Switch to last used tab", src: "/alt_t.mp4" },
+    { key: "ALT + T", desc: "Switch to last used tab", src: "/alt_t.webm" },
     {
         key: "ALT + G",
         desc: "Open Google Homepage and close all other tabs",
-        src: "/alt_g.mp4",
+        src: "/alt_g.webm",
+        iframe: (
+            <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/ONTgE2Hm2fA?si=DQAfynvBXYkteIQa"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;  web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+            ></iframe>
+        ),
     },
-    { key: "ALT + D", desc: "Duplicate tab", src: "/alt_d.mp4" },
-    { key: "ALT + M", desc: "Mute / Unmute tab", src: "/alt_m.mp4" },
-    { key: "ALT + P", desc: "Pin / Unpin tab", src: "/alt_p.mp4" },
+    {
+        key: "ALT + D",
+        desc: "Duplicate tab",
+        src: "/alt_d.webm",
+        iframe: (
+            <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/KSHmN4xOLtg?si=forwkOj5d_6kSD8o"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;  web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+            ></iframe>
+        ),
+    },
+    {
+        key: "ALT + M",
+        desc: "Mute / Unmute tab",
+        src: "/alt_m.webm",
+        iframe: (
+            <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/RImwbRvh0c0?si=Pgk8zPkDwwlqqnfS"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;  web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+            ></iframe>
+        ),
+    },
+    {
+        key: "ALT + P",
+        desc: "Pin / Unpin tab",
+        src: "/alt_p.webm",
+        iframe: (
+            <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/N1yHXeZl74Q?si=xursX78RlZ0AB001"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;  web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+            ></iframe>
+        ),
+    },
 ];
 function Section1() {
     const texts1 = [
@@ -112,16 +228,29 @@ function Section2() {
         "Add the chrome extension",
         "Go to keyboard shortcuts",
         "Add unconfigured shortcuts",
+        "DONE!! ✅🚀🚀",
     ];
     return (
-        <div className="flex justify-between mx-50 my-60">
+        <div className="flex justify-between mx-50 my-60 items-center">
             <div>
                 <video
-                    src={"/config-cut.mp4"}
+                    src={"/config-cut.webm"}
                     width="500"
                     height="300"
                     controls="controls"
                 />
+                {/* <div>
+                    <iframe
+                        width="560"
+                        height="315"
+                        src="https://www.youtube.com/embed/HUYW3dcq0tg?si=orzd4EGXF3gJOT1Q"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;  web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen
+                    ></iframe>
+                </div> */}
             </div>
             <div>
                 <span className="text-[6rem]">SetUp and Usage</span>
@@ -172,14 +301,15 @@ function Section3() {
                             onClick={() => handleTileClick(idx)}
                         >
                             <div>{item.desc}</div>
+                            {false && isOpen && (
+                                <div className="mb-8">{item.iframe}</div>
+                            )}
                             {isOpen && (
                                 <video
-                                    className="mb-10"
-                                    src={`${item.src}`}
-                                    width="500"
-                                    height="300"
-                                    controls="controls"
-                                />
+                                    className="mb-8"
+                                    width={"500"}
+                                    src={item.src}
+                                ></video>
                             )}
                         </div>
                     );
