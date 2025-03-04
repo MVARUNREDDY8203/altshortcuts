@@ -301,10 +301,10 @@ function Section3() {
                             onClick={() => handleTileClick(idx)}
                         >
                             <div>{item.desc}</div>
-                            {false && isOpen && (
+                            {true && isOpen && (
                                 <div className="mb-8">{item.iframe}</div>
                             )}
-                            {isOpen && (
+                            {false && isOpen && (
                                 <video
                                     className="mb-8"
                                     width={"500"}
