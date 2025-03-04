@@ -41,7 +41,7 @@
     "mail.google.com": {
         "search": ["input[aria-label='Search mail']"],
         "write": [
-            "body > div:nth-child(29) > div.nH > div > div.nH.aqk.aql.bkL > div.aqn.aIH.nH.oy8Mbf.apV > div.aBO > div.aic > div > div"
+            "body > div:nth-child(24) > div.nH > div > div.nH.aqk.aql.bkL > div.aeN.WR.baA.nH.oy8Mbf > div.aic > div > div"
         ]
     },
     "chatgpt.com": {
