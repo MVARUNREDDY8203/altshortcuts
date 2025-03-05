@@ -35,7 +35,7 @@ const shortcuts = [
                 src="https://www.youtube.com/embed/FCumqqW_6hI?si=wM7ogMJbDHEkrDVh"
                 title="YouTube video player"
                 frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; web-share"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; web-share"
                 referrerpolicy="strict-origin-when-cross-origin"
                 allowfullscreen
             ></iframe>
@@ -52,7 +52,7 @@ const shortcuts = [
                 src="https://www.youtube.com/embed/AnNVB7s8Abs?si=BkzslDEbSbZ-Miej"
                 title="ALT+W: FOCUS ON WRITE"
                 frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;  web-share"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media;fullscreen;  gyroscope;  web-share"
                 referrerpolicy="strict-origin-when-cross-origin"
                 allowfullscreen
             ></iframe>
@@ -68,7 +68,7 @@ const shortcuts = [
                 src="https://www.youtube.com/embed/sP3qQyAKE6o?si=SsiudxJ4c-Xa4CHn"
                 title="YouTube video player"
                 frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; fullscreen; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin"
                 allowfullscreen
             ></iframe>
@@ -86,7 +86,7 @@ const shortcuts = [
                 src="https://www.youtube.com/embed/c74yL160Gm0?si=qreZfyVop0E4mCd_"
                 title="YouTube video player"
                 frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;  web-share"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; fullscreen;  web-share"
                 referrerpolicy="strict-origin-when-cross-origin"
                 allowfullscreen
             ></iframe>
@@ -103,7 +103,7 @@ const shortcuts = [
                 src="https://www.youtube.com/embed/c74yL160Gm0?si=qreZfyVop0E4mCd_"
                 title="YouTube video player"
                 frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;  web-share"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; fullscreen;  web-share"
                 referrerpolicy="strict-origin-when-cross-origin"
                 allowfullscreen
             ></iframe>
@@ -119,7 +119,7 @@ const shortcuts = [
                 src="https://www.youtube.com/embed/QjihRppoI68?si=RpqK7qypEPs-Qcqu"
                 title="YouTube video player"
                 frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;  web-share"
                 referrerpolicy="strict-origin-when-cross-origin"
                 allowfullscreen
             ></iframe>
@@ -137,7 +137,7 @@ const shortcuts = [
                 src="https://www.youtube.com/embed/ONTgE2Hm2fA?si=DQAfynvBXYkteIQa"
                 title="YouTube video player"
                 frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;  web-share"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; fullscreen;  web-share"
                 referrerpolicy="strict-origin-when-cross-origin"
                 allowfullscreen
             ></iframe>
@@ -154,7 +154,7 @@ const shortcuts = [
                 src="https://www.youtube.com/embed/KSHmN4xOLtg?si=forwkOj5d_6kSD8o"
                 title="YouTube video player"
                 frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;  web-share"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; fullscreen;  web-share"
                 referrerpolicy="strict-origin-when-cross-origin"
                 allowfullscreen
             ></iframe>
@@ -171,7 +171,7 @@ const shortcuts = [
                 src="https://www.youtube.com/embed/RImwbRvh0c0?si=Pgk8zPkDwwlqqnfS"
                 title="YouTube video player"
                 frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;  web-share"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; fullscreen;  web-share"
                 referrerpolicy="strict-origin-when-cross-origin"
                 allowfullscreen
             ></iframe>
@@ -188,7 +188,7 @@ const shortcuts = [
                 src="https://www.youtube.com/embed/N1yHXeZl74Q?si=xursX78RlZ0AB001"
                 title="YouTube video player"
                 frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;  web-share"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; fullscreen;  web-share"
                 referrerpolicy="strict-origin-when-cross-origin"
                 allowfullscreen
             ></iframe>
@@ -198,7 +198,7 @@ const shortcuts = [
 function Section1() {
     const texts1 = [
         "Works on your favorite websites",
-        "Increase your productivity",
+        "Increases your productivity",
         "It's Open Source",
         "Quick Setup",
         "Try It Now!",
@@ -226,13 +226,24 @@ function Section1() {
                             </span>
                         );
                     })}
-                    <div className="mt-4 text-2xl">
-                        <button className="bg-green-500 text-black rounded-xl px-4">
+                    <div className="flex mt-4 text-2xl">
+                        <a
+                            href="https://github.com/MVARUNREDDY8203/altshortcuts"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center bg-green-500 text-black rounded-xl px-6 font-medium hover:bg-green-600 transition"
+                        >
                             Github
-                        </button>
-                        <button className="ml-3 bg-green-500 text-black rounded-xl px-4">
+                        </a>
+
+                        <a
+                            href="https://chromewebstore.google.com/detail/alt-shortcuts/pahfhkipajanpngdindidihnplfkldjp"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="ml-3 flex flex-col items-center bg-green-500 text-black rounded-xl px-6 py-0.4 font-medium hover:bg-green-600 transition"
+                        >
                             Chrome
-                        </button>
+                        </a>
                     </div>
                 </div>
                 {/* Shortcuts */}
@@ -278,9 +289,9 @@ function Section2() {
                         src="https://www.youtube.com/embed/HUYW3dcq0tg?si=orzd4EGXF3gJOT1Q"
                         title="YouTube video player"
                         frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;  web-share"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; fullscreen;  web-share"
                         referrerpolicy="strict-origin-when-cross-origin"
-                        allowfullscreen
+                        allowFullScreen
                     ></iframe>
                 </div>
             </div>
