@@ -18,7 +18,9 @@ function MainContent() {
             <Section2></Section2>
             <Section3></Section3>
             <Section4></Section4>
-            <div>made with love</div>
+            <div className="text-right">
+                made with love by ~ M. VARUN REDDY 💝
+            </div>
         </>
     );
 }
@@ -274,7 +276,7 @@ function Section2() {
         "DONE!! ✅🚀🚀",
     ];
     return (
-        <div className="flex justify-between mx-50 my-60 items-center">
+        <div className="flex justify-between mx-50 mt-60 mb-40 items-center">
             <div>
                 {/* <video
                     src={"/config-cut.webm"}
@@ -318,13 +320,21 @@ function Section3() {
         }
     }
     return (
-        <div className="bg-zinc-300 flex-col items-center">
-            {/* accordion tiles */}
-            <div>
+        <div className="flex-col items-center relative">
+            <div
+                style={{
+                    background: "#595A5B",
+                    background: "linear-gradient(0deg, #828282, #FFFFFF)",
+                }}
+                className="hidden md:block relative text-[23rem] font-extrabold -mb-67 z-0 text-center w-full"
+            >
+                SHORCUTS
+            </div>
+
+            {/* Your existing accordion code - unchanged */}
+            <div className="relative z-10 bg-zinc-200 ">
                 {shortcuts.map((item, idx) => {
                     const isOpen = openIdx == idx;
-                    const isFirst = idx == 0;
-                    const isLast = idx == shortcuts.length - 1;
                     return (
                         <div
                             key={idx}
@@ -337,7 +347,7 @@ function Section3() {
                                 border
                                 transiton-all
                                 duration-200
-                                border-gray-800
+                                border-black
                                 px-50
                                 cursor-pointer flex-col w-full text-3xl hover:bg-black hover:text-white 
                             `}
@@ -365,14 +375,17 @@ function Section4() {
     return (
         <>
             <div
-                style={{
-                    width: "90%",
-                    display: "flex",
-                    margin: "100px auto",
-                    boxSizing: "border-box",
-                    padding: "0px 120px",
-                    justifyContent: "space-between",
-                }}
+                className=" flex px-50 pt-40"
+                style={
+                    {
+                        // width: "90%",
+                        // display: "flex",
+                        // margin: "100px auto",
+                        // boxSizing: "border-box",
+                        // padding: "0px 120px",
+                        // justifyContent: "space-between",
+                    }
+                }
             >
                 <div
                     style={{
@@ -414,7 +427,10 @@ function Section4() {
                         tab to the right?
                     </span>
                 </div>
-                <div
+                <div className="flex w-[40rem] justify-center items-center">
+                    <span className="text-[15rem]">About.</span>
+                </div>
+                {/* <div
                     style={{
                         backgroundColor: "#A799FF",
                         borderRadius: "20px",
@@ -458,18 +474,21 @@ function Section4() {
                         3. Switch to the next / prev tab: actually provided by
                         default by Chrome, most people don't know about it.
                     </span>
-                </div>
+                </div> */}
             </div>
             <div
-                style={{
-                    width: "90%",
-                    display: "flex",
-                    marginLeft: "auto",
-                    marginRight: "auto",
-                    boxSizing: "border-box",
-                    padding: "0px 120px",
-                    justifyContent: "space-between",
-                }}
+                className="px-50 flex justify-between mb-20"
+                style={
+                    {
+                        // width: "90%",
+                        // display: "flex",
+                        // marginLeft: "auto",
+                        // marginRight: "auto",
+                        // boxSizing: "border-box",
+                        // padding: "0px 120px",
+                        // justifyContent: "space-between",
+                    }
+                }
             >
                 <div
                     style={{
