@@ -58,7 +58,23 @@ const shortcuts = [
             ></iframe>
         ),
     },
-    { key: "ALT + R", desc: "Open new tab to Right ", src: "/alt_r.webm" },
+    {
+        key: "ALT + R",
+        desc: "Open new tab to Right ",
+        iframe: (
+            <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/sP3qQyAKE6o?si=SsiudxJ4c-Xa4CHn"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+            ></iframe>
+        ),
+        src: "/alt_r.webm",
+    },
     {
         key: "ALT + U",
         desc: "Scroll to the top of the page",
@@ -93,7 +109,23 @@ const shortcuts = [
             ></iframe>
         ),
     },
-    { key: "ALT + T", desc: "Switch to last used tab", src: "/alt_t.webm" },
+    {
+        key: "ALT + T",
+        desc: "Switch to last used tab",
+        iframe: (
+            <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/QjihRppoI68?si=RpqK7qypEPs-Qcqu"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+            ></iframe>
+        ),
+        src: "/alt_t.webm",
+    },
     {
         key: "ALT + G",
         desc: "Open Google Homepage and close all other tabs",
@@ -233,13 +265,13 @@ function Section2() {
     return (
         <div className="flex justify-between mx-50 my-60 items-center">
             <div>
-                <video
+                {/* <video
                     src={"/config-cut.webm"}
                     width="500"
                     height="300"
                     controls="controls"
-                />
-                {/* <div>
+                /> */}
+                <div>
                     <iframe
                         width="560"
                         height="315"
@@ -250,7 +282,7 @@ function Section2() {
                         referrerpolicy="strict-origin-when-cross-origin"
                         allowfullscreen
                     ></iframe>
-                </div> */}
+                </div>
             </div>
             <div>
                 <span className="text-[6rem]">SetUp and Usage</span>
