@@ -6,7 +6,6 @@ function App() {
         <>
             <Header></Header>
             <MainContent></MainContent>
-            <div></div>
         </>
     );
 }
@@ -18,7 +17,8 @@ function MainContent() {
             <Section2></Section2>
             <Section3></Section3>
             <Section4></Section4>
-            <div className="text-right">
+            <Section5></Section5>
+            <div className="text-right px-20 mt-5">
                 made with love by ~ M. VARUN REDDY 💝
             </div>
         </>
@@ -212,10 +212,14 @@ function Section1() {
             <div className="flex justify-between items-center mx-auto rounded-3xl px-30 py-15 text-white blackbgsection1">
                 {/* Left side CTA and intro */}
                 <div>
-                    <span className="text-3xl font-bold block tracking-wider color-white">
+                    <span className="text-3xl text-neutral-200 font-bold block tracking-wider color-white">
                         don't lift your hands off the keyboard, use
                     </span>
-                    <span className="mb-4 text-7xl font-extrabold block text-violet-400">
+                    <span
+                        style={{}}
+                        className="mb-4 text-7xl font-extrabold block text-transparent bg-clip-text 
+               bg-[linear-gradient(to_right,#A78BFA_0%,#E1AB00_100%)]"
+                    >
                         ALT Shortcuts
                     </span>
                     {texts1.map((t1, idx) => {
@@ -233,7 +237,7 @@ function Section1() {
                             href="https://github.com/MVARUNREDDY8203/altshortcuts"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center bg-green-500 text-black rounded-xl px-6 font-medium hover:bg-green-600 transition"
+                            className="flex items-center bg-green-500 text-black rounded-xl px-6 font-medium transition-all duration-150 hover:tracking-wider"
                         >
                             Github
                         </a>
@@ -242,7 +246,7 @@ function Section1() {
                             href="https://chromewebstore.google.com/detail/alt-shortcuts/pahfhkipajanpngdindidihnplfkldjp"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="ml-3 flex flex-col items-center bg-green-500 text-black rounded-xl px-6 py-0.4 font-medium hover:bg-green-600 transition"
+                            className="ml-3 flex flex-col items-center bg-green-500 text-black rounded-xl px-6 py-0.4 font-medium transition-all duration-150 hover:tracking-wider"
                         >
                             Chrome
                         </a>
@@ -276,7 +280,10 @@ function Section2() {
         "DONE!! ✅🚀🚀",
     ];
     return (
-        <div className="flex justify-between mx-50 mt-60 mb-40 items-center">
+        <div
+            id="setup"
+            className="flex justify-between mx-50 mt-60 mb-40 items-center"
+        >
             <div>
                 {/* <video
                     src={"/config-cut.webm"}
@@ -320,10 +327,9 @@ function Section3() {
         }
     }
     return (
-        <div className="flex-col items-center relative">
+        <div id="shortcuts" className="flex-col items-center relative">
             <div
                 style={{
-                    background: "#595A5B",
                     background: "linear-gradient(0deg, #828282, #FFFFFF)",
                 }}
                 className="hidden md:block relative text-[23rem] font-extrabold -mb-67 z-0 text-center w-full"
@@ -375,6 +381,7 @@ function Section4() {
     return (
         <>
             <div
+                id="about"
                 className=" flex px-50 pt-40"
                 style={
                     {
@@ -476,108 +483,141 @@ function Section4() {
                     </span>
                 </div> */}
             </div>
-            <div
-                className="px-50 flex justify-between mb-20"
-                style={
-                    {
-                        // width: "90%",
-                        // display: "flex",
-                        // marginLeft: "auto",
-                        // marginRight: "auto",
-                        // boxSizing: "border-box",
-                        // padding: "0px 120px",
-                        // justifyContent: "space-between",
-                    }
-                }
-            >
-                <div
-                    style={{
-                        marginTop: "40px",
-                        backgroundColor: "#edd088",
-                        borderRadius: "20px",
-                        boxSizing: "border-box",
-                        padding: "40px",
-                        width: "100%",
-                    }}
-                >
-                    <span
-                        style={{
-                            fontSize: "36px",
-                            display: "block",
-                            fontWeight: "600",
-                            letterSpacing: "5px",
-                        }}
-                    >
-                        Problems Faced, Solutions and Why Open Source?
+            <div className="px-50 flex justify-between text-neutral-800 ">
+                <div className="mt-10 bg-[#edd088] rounded-[20px] box-border p-10 w-full">
+                    <span className="text-6xl block font-semibold tracking-widest">
+                        Problems, Solutions & Why Open Source?
                     </span>
-                    <span
-                        style={{
-                            display: "block",
-                            lineHeight: "25px",
-                            textAlign: "justify",
-                            fontWeight: "400",
-                        }}
-                    >
-                        <br></br>
-                        <span
-                            style={{ fontWeight: "600", letterSpacing: "2px" }}
-                        >
-                            The biggest problem
-                        </span>{" "}
-                        for this extension to work is maintainance. The
-                        Extension's main feature - the focus on Search/Write
-                        depends on the UI elements of the websites, which is
-                        constantly changing. It would be very hard for me to
-                        maintain the extension's core functionality such way...
-                        And even if I managed to keep the extension updated, I'd
-                        have to push updates everytime some website's UI
-                        changes, which would be very tedious<br></br>
-                        -- Another problem was that Chrome allows maximum 4
-                        shortcuts by default, the rest, the user has to
-                        configure.
-                        <br></br>
-                        <br></br>
-                        <span
-                            style={{ fontWeight: "600", letterSpacing: "2px" }}
-                        >
-                            The Solution:
+                    <span className="block leading-[25px] text-justify font-normal mt-4">
+                        <span className="text-3xl font-semibold tracking-wide">
+                            CHALLENGES
+                        </span>
+                        <br />
+                        <span>
+                            -- Keeping the extension updated is tough since
+                            website UIs constantly change.
+                            <br />
+                            -- Chrome allows only 4 default shortcuts ,
+                            requiring manual user configuration.
+                        </span>
+                        <br />
+                        <br />
+                        <span className="text-3xl font-semibold tracking-wide">
+                            THE SOLUTION:
+                        </span>
+                        <br />{" "}
+                        <span className="">
+                            -- OPEN SOURCE – If people love it, the community
+                            will help maintain it.
+                            <br></br> -- DECOUPLED LOGIC – Core logic stays in
+                            the extension, while UI elements & JS paths are in a
+                            publicly hosted `handlers.json` (updated via GitHub
+                            PRs).
+                            <br></br> -- AUTOMATIC UPDATES – The extension
+                            fetches & caches `handlers.json`, ensuring seamless
+                            updates without constant manual pushes.
                         </span>
                         <br></br>
-                        -- make the extension{" "}
-                        <span
-                            style={{ fontWeight: "600", letterSpacing: "2px" }}
-                        >
-                            Open Source,
-                        </span>{" "}
-                        if the people love it, it'll take care of itself... Even
-                        then it would be hard to push updates via my developer
-                        account every now and then...<br></br>
-                        -- So I've decided to decouple the application's logic
-                        into the extension and a sepearate handlers.json file
-                        with all the UI elements, JS paths of different websites
-                        hosted at a public URL connected to Github. That way
-                        everytime someone creates a new PR, it could be simply
-                        merged and the hosted handers.json file will be updated.
                         <br></br>
-                        -- I've also added fetch and cache the handlers.json and
-                        and refresh cache after a timeperiods logic so that it
-                        works reliably with updates
+                        <span>
+                            - Want More? ➕
+                            <br />- Found a bug? 🐞
+                            <br />- Have a feature idea? 💡
+                            <br />- Open an Issue or submit a Pull Request 💻
+                            <br />- Let’s build it together! 🚀
+                        </span>
                         <br></br>
-                        <br></br>
-                        Doesn't work on a website?<br></br>
-                        Want a new feature?<br></br>
-                        You've got a better Solution?<br></br>
-                        Create an Issue, or a PR, help it grow, its Open Source!
                     </span>
                 </div>
             </div>
         </>
     );
 }
-function Header() {
+function Section5() {
     return (
-        <div className="header">
-            <span className="logo">ALT shortcuts</span>
+        <>
+            <div className="bg-white mx-20 mt-30">
+                <div className="flex justify-between items-center mx-auto rounded-3xl px-30 py-15 text-white blackbgsection1">
+                    <div>
+                        <span
+                            //                 className="text-transparent bg-clip-text
+                            //    bg-[linear-gradient(to_right,#A78BFA_0%,#E1C74A_100%)]"
+                            style={{
+                                fontSize: "14rem",
+                            }}
+                        >
+                            Try it now!
+                        </span>
+                    </div>
+                    <div
+                        onClick={() =>
+                            window.open(
+                                "https://chromewebstore.google.com/detail/alt-shortcuts/pahfhkipajanpngdindidihnplfkldjp",
+                                "_blank"
+                            )
+                        }
+                        className="bg-white text-black cursor-pointer"
+                    >
+                        <img
+                            width="300px"
+                            src=".\avlb_in_chrome_web_store.png"
+                        ></img>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+}
+function Header() {
+    function scrollToSection(id) {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    }
+    return (
+        <div className="flex justify-between items-center px-20  h-15">
+            <div className="text-4xl">ALT shortcuts</div>
+            <div className="flex text-3xl">
+                <div
+                    onClick={() => scrollToSection("setup")}
+                    className="px-2 cursor-pointer transition-all duration-150 hover:tracking-widest"
+                >
+                    Setup
+                </div>
+
+                <div
+                    onClick={() => scrollToSection("shortcuts")}
+                    className="px-2 cursor-pointer transition-all duration-150 hover:tracking-widest"
+                >
+                    Shortcuts
+                </div>
+                <div
+                    onClick={() => scrollToSection("about")}
+                    className="px-2 cursor-pointer transition-all duration-150 hover:tracking-widest"
+                >
+                    About
+                </div>
+                <div
+                    onClick={() =>
+                        window.open(
+                            "https://github.com/MVARUNREDDY8203/altshortcuts",
+                            "_blank"
+                        )
+                    }
+                    className="px-2 cursor-pointer transition-all duration-150 hover:tracking-widest"
+                >
+                    Github
+                </div>
+                <div
+                    onClick={() =>
+                        window.open(
+                            "https://chromewebstore.google.com/detail/alt-shortcuts/pahfhkipajanpngdindidihnplfkldjp",
+                            "_blank"
+                        )
+                    }
+                    className="px-2 cursor-pointer transition-all duration-150 hover:tracking-widest"
+                >
+                    Chrome
+                </div>
+            </div>
         </div>
     );
 }
