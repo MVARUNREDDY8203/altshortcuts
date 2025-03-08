@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "ALT Shortcuts",
-    "version": "1.0",
+    "version": "1.0.1",
     "description": "A Chrome extension for fast browser navigation and tab management.",
     "permissions": ["activeTab", "scripting", "storage", "alarms"],
     "host_permissions": ["https://altshortcuts.pages.dev/*"],

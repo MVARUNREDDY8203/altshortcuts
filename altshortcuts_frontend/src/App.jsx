@@ -390,7 +390,7 @@ function Header() {
     }
     return (
         <div className="flex justify-between items-center px-20  h-15 bg-white">
-            <div className="text-4xl">ALT shortcuts</div>
+            <div className="text-4xl">ALT Shortcuts</div>
             <div className="flex text-3xl">
                 <div
                     onClick={() => scrollToSection("setup")}
