@@ -1,30 +1,216 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
+import { motion, AnimatePresence } from "framer-motion";
 
 function App() {
+    const [initState, setInitState] = useState(-1);
+
+    useEffect(() => {
+        // framer motion things for starting UX
+        const urlParams = new URLSearchParams(window.location.search);
+        const source = urlParams.get("source");
+
+        let waitTime = 0;
+        if (source === "install") {
+            setInitState(0);
+            waitTime = 10500;
+        } else {
+            setInitState(10);
+            waitTime = 10500;
+        }
+        const timer = setTimeout(() => setInitState(33), waitTime);
+        return () => clearTimeout(timer);
+    }, []);
+
+    return (
+        <motion.div
+            className="h-screen w-screen flex items-center justify-center bg-black"
+            transition={{ duration: 0.3 }}
+        >
+            <AnimatePresence mode="wait">
+                {initState === 0 && <ThanksForInstall key="ThanksForInstall" />}
+                {initState == 10 && <Welcome1 key="welcome1"></Welcome1>}
+                {initState === 33 && (
+                    <motion.div
+                        key="maincontent"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="w-full h-full"
+                    >
+                        <MainContent />
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </motion.div>
+    );
+}
+// general vistor welcome
+function Welcome1() {
+    const [welcomeOneState, setWelcomeOneState] = useState(0);
+    useEffect(() => {
+        const timers = [
+            setTimeout(() => setWelcomeOneState(1), 2500),
+            setTimeout(() => setWelcomeOneState(2), 5000),
+            setTimeout(() => setWelcomeOneState(3), 7500),
+        ];
+
+        return () => timers.forEach(clearTimeout);
+    }, []);
     return (
         <>
-            <Header></Header>
-            <MainContent></MainContent>
+            <motion.div
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="text-white text-6xl"
+            >
+                <AnimatePresence mode="wait">
+                    {welcomeOneState == 0 && (
+                        <motion.div
+                            key={"hellovis"}
+                            initial={{ y: 300, opacity: 0, scale: 0.5 }}
+                            animate={{ y: 0, opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="text-8xl"
+                        >
+                            Hello Visitor 👋
+                        </motion.div>
+                    )}
+                    {welcomeOneState == 1 && (
+                        <motion.div
+                            key={"lookingforfast"}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            looking for a way to navigate Chrome faster?
+                        </motion.div>
+                    )}
+                    {welcomeOneState == 2 && (
+                        <motion.div
+                            key={"rightplace"}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            you've come to the right place.
+                        </motion.div>
+                    )}
+                    {welcomeOneState == 3 && (
+                        <motion.div
+                            key={"altshortcuts"}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <span
+                                className="text-9xl text-transparent bg-clip-text font-bold px-5
+						   bg-[linear-gradient(to_right,#A78BFA_0%,#E1AB00_100%)]"
+                            >
+                                Alt Shortcuts
+                            </span>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </motion.div>
         </>
     );
 }
+// new install welcome
+function ThanksForInstall() {
+    const [thankState, setThankState] = useState(0);
+    useEffect(() => {
+        const timers = [
+            setTimeout(() => setThankState(1), 2500),
+            setTimeout(() => setThankState(2), 5500),
+        ];
 
+        return () => timers.forEach(clearTimeout);
+    }, []);
+    return (
+        <>
+            <motion.div
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="text-white text-5xl"
+            >
+                <AnimatePresence mode="wait">
+                    {thankState == 0 && (
+                        <motion.div
+                            className="flex text-8xl items-center justify-center text-white h-screen"
+                            initial={{ opacity: 0, y: 200, scale: 0.75 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                        >
+                            <span>Thanks for Installing </span>
+                            <span
+                                className="text-transparent bg-clip-text font-bold px-5
+						   bg-[linear-gradient(to_right,#A78BFA_0%,#E1AB00_100%)]"
+                            >
+                                Alt Shortcuts
+                            </span>
+                            <motion.span
+                                initial={{ scale: 0.2 }}
+                                animate={{ scale: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.2 }}
+                            >
+                                🙏
+                            </motion.span>
+                        </motion.div>
+                    )}
+                    {thankState == 1 && (
+                        <motion.div
+                            key={"lilsetup"}
+                            className="flex text-5xl text-white"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                        >
+                            To use all the features of this extension, you gotta
+                            do a little setup
+                        </motion.div>
+                    )}
+                    {thankState == 2 && (
+                        <motion.div
+                            className="flex text-5xl text-white"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            Go to the "SETUP" section of the page and watch the
+                            setup video.
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </motion.div>
+        </>
+    );
+}
+// this is main frontend landing page
 function MainContent() {
     return (
         <>
-            <Section1></Section1>
-            <Section2></Section2>
-            <Section3></Section3>
-            <Section4></Section4>
-            <Section5></Section5>
-            <div className="text-right px-20 mt-5">
-                made with love by ~ M. VARUN REDDY 💝
+            <div className="bg-white text-black h-screen">
+                <Header></Header>
+                <Section1></Section1>
+                <Section2></Section2>
+                <Section3></Section3>
+                <Section4></Section4>
+                <Section5></Section5>
+                <Footer></Footer>
             </div>
         </>
     );
 }
-
 const shortcuts = [
     {
         key: "ALT + S",
@@ -197,76 +383,133 @@ const shortcuts = [
         ),
     },
 ];
+// the page divided into sections
+function Header() {
+    function scrollToSection(id) {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    }
+    return (
+        <div className="flex justify-between items-center px-20  h-15 bg-white">
+            <div className="text-4xl">ALT shortcuts</div>
+            <div className="flex text-3xl">
+                <div
+                    onClick={() => scrollToSection("setup")}
+                    className="px-2 cursor-pointer transition-all duration-150 hover:tracking-widest"
+                >
+                    Setup
+                </div>
+
+                <div
+                    onClick={() => scrollToSection("shortcuts")}
+                    className="px-2 cursor-pointer transition-all duration-150 hover:tracking-widest"
+                >
+                    Shortcuts
+                </div>
+                <div
+                    onClick={() => scrollToSection("about")}
+                    className="px-2 cursor-pointer transition-all duration-150 hover:tracking-widest"
+                >
+                    About
+                </div>
+                <div
+                    onClick={() =>
+                        window.open(
+                            "https://chromewebstore.google.com/detail/alt-shortcuts/pahfhkipajanpngdindidihnplfkldjp",
+                            "_blank"
+                        )
+                    }
+                    className="px-2 cursor-pointer transition-all duration-150 hover:tracking-widest"
+                >
+                    Download
+                </div>
+                <div
+                    onClick={() =>
+                        window.open(
+                            "https://github.com/MVARUNREDDY8203/altshortcuts",
+                            "_blank"
+                        )
+                    }
+                    className="px-2 cursor-pointer transition-all duration-150 hover:tracking-widest"
+                >
+                    Github
+                </div>
+            </div>
+        </div>
+    );
+}
 function Section1() {
     const texts1 = [
-        "Works on your favorite websites",
-        "Increases your productivity",
-        "It's Open Source",
-        "Quick Setup",
+        "Navigate Chrome faster than ever",
+        "Become more productive",
+        "with powerful shortcuts",
+        // "Quick Setup",
         "Try It Now!",
     ];
 
     return (
-        <div className="bg-white mx-20">
-            {/* black bg */}
-            <div className="flex justify-between items-center mx-auto rounded-3xl px-30 py-15 text-white blackbgsection1">
-                {/* Left side CTA and intro */}
-                <div>
-                    <span className="text-3xl text-neutral-200 font-bold block tracking-wider color-white">
-                        don't lift your hands off the keyboard, use
-                    </span>
-                    <span
-                        style={{}}
-                        className="mb-4 text-7xl font-extrabold block text-transparent bg-clip-text 
+        <div className="bg-white h-screen">
+            <div className="bg-white mx-20">
+                {/* black bg */}
+                <div className="flex justify-between items-center mx-auto rounded-3xl px-30 py-15 text-white blackbgsection1">
+                    {/* Left side CTA and intro */}
+                    <div>
+                        <span className="text-3xl text-neutral-200 font-bold block tracking-wider color-white">
+                            don't lift your hands off the keyboard, use
+                        </span>
+                        <span
+                            style={{}}
+                            className="mb-4 text-7xl font-extrabold block text-transparent bg-clip-text 
                bg-[linear-gradient(to_right,#A78BFA_0%,#E1AB00_100%)]"
-                    >
-                        ALT Shortcuts
-                    </span>
-                    {texts1.map((t1, idx) => {
-                        return (
-                            <span
-                                className="text-gray-400 block -mt-4"
-                                key={idx}
-                            >
-                                {t1}
-                            </span>
-                        );
-                    })}
-                    <div className="flex mt-4 text-2xl">
-                        <a
-                            href="https://github.com/MVARUNREDDY8203/altshortcuts"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center bg-green-500 text-black rounded-xl px-6 font-medium transition-all duration-150 hover:tracking-wider"
                         >
-                            Github
-                        </a>
-
-                        <a
-                            href="https://chromewebstore.google.com/detail/alt-shortcuts/pahfhkipajanpngdindidihnplfkldjp"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="ml-3 flex flex-col items-center bg-green-500 text-black rounded-xl px-6 py-0.4 font-medium transition-all duration-150 hover:tracking-wider"
-                        >
-                            Chrome
-                        </a>
-                    </div>
-                </div>
-                {/* Shortcuts */}
-                <div className="bg-white text-black rounded-3xl py-10 px-10">
-                    {shortcuts.map((s, idx) => {
-                        return (
-                            <div
-                                key={idx}
-                                className="mt-[0.80rem] max-h-[2rem]"
-                            >
-                                <span className="text-2xl font-medium rem bg-neutral-300 px-3 rounded-md cursor-pointer border border-gray shadow-[0.20rem_0.20rem_0_#808080]">
-                                    {s.key}
+                            ALT Shortcuts
+                        </span>
+                        {texts1.map((t1, idx) => {
+                            return (
+                                <span
+                                    className="text-gray-400 block -mt-4"
+                                    key={idx}
+                                >
+                                    {t1}
                                 </span>
-                                <span className="text-2xl ml-5">{s.desc}</span>
-                            </div>
-                        );
-                    })}
+                            );
+                        })}
+                        <div className="flex mt-4 text-2xl">
+                            <a
+                                href="https://chromewebstore.google.com/detail/alt-shortcuts/pahfhkipajanpngdindidihnplfkldjp"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className=" flex flex-col items-center bg-green-500 text-black rounded-xl px-6 py-0.4 font-medium transition-all duration-150 hover:tracking-wider"
+                            >
+                                Download Extension
+                            </a>
+                            {/* <a
+                                href="https://github.com/MVARUNREDDY8203/altshortcuts"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="ml-3 flex items-center bg-green-500 text-black rounded-xl px-6 font-medium transition-all duration-150 hover:tracking-wider"
+                            >
+                                Github
+                            </a> */}
+                        </div>
+                    </div>
+                    {/* Shortcuts */}
+                    <div className="bg-white text-black rounded-3xl py-10 px-10">
+                        {shortcuts.map((s, idx) => {
+                            return (
+                                <div
+                                    key={idx}
+                                    className="mt-[0.80rem] max-h-[2rem]"
+                                >
+                                    <span className="text-2xl font-medium rem bg-neutral-300 px-3 rounded-md cursor-pointer border border-gray shadow-[0.20rem_0.20rem_0_#808080]">
+                                        {s.key}
+                                    </span>
+                                    <span className="text-2xl ml-5">
+                                        {s.desc}
+                                    </span>
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
         </div>
@@ -559,7 +802,8 @@ function Section5() {
                         className="bg-white text-black cursor-pointer"
                     >
                         <img
-                            width="300px"
+                            className="w-[18rem] transition-all duration-100 hover:w-[18.5rem]"
+                            // width="300px"
                             src=".\avlb_in_chrome_web_store.png"
                         ></img>
                     </div>
@@ -568,56 +812,10 @@ function Section5() {
         </>
     );
 }
-function Header() {
-    function scrollToSection(id) {
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    }
+function Footer() {
     return (
-        <div className="flex justify-between items-center px-20  h-15">
-            <div className="text-4xl">ALT shortcuts</div>
-            <div className="flex text-3xl">
-                <div
-                    onClick={() => scrollToSection("setup")}
-                    className="px-2 cursor-pointer transition-all duration-150 hover:tracking-widest"
-                >
-                    Setup
-                </div>
-
-                <div
-                    onClick={() => scrollToSection("shortcuts")}
-                    className="px-2 cursor-pointer transition-all duration-150 hover:tracking-widest"
-                >
-                    Shortcuts
-                </div>
-                <div
-                    onClick={() => scrollToSection("about")}
-                    className="px-2 cursor-pointer transition-all duration-150 hover:tracking-widest"
-                >
-                    About
-                </div>
-                <div
-                    onClick={() =>
-                        window.open(
-                            "https://github.com/MVARUNREDDY8203/altshortcuts",
-                            "_blank"
-                        )
-                    }
-                    className="px-2 cursor-pointer transition-all duration-150 hover:tracking-widest"
-                >
-                    Github
-                </div>
-                <div
-                    onClick={() =>
-                        window.open(
-                            "https://chromewebstore.google.com/detail/alt-shortcuts/pahfhkipajanpngdindidihnplfkldjp",
-                            "_blank"
-                        )
-                    }
-                    className="px-2 cursor-pointer transition-all duration-150 hover:tracking-widest"
-                >
-                    Chrome
-                </div>
-            </div>
+        <div className="bg-white text-right px-20 mt-5">
+            made with love by ~ M. VARUN REDDY 💝
         </div>
     );
 }

@@ -246,7 +246,7 @@ chrome.alarms.onAlarm.addListener((alarm) => {
 chrome.runtime.onInstalled.addListener((details) => {
     if (details.reason === "install") {
         chrome.tabs.create({
-            url: "https://altshortcuts.vercel.app/",
+            url: "https://altshortcuts.vercel.app/?source=install",
         });
     }
 });
