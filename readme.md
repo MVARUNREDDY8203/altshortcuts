@@ -63,8 +63,8 @@ Want to contribute? Follow these steps:
 
 Take a read through the architecture
 
--   [Shortcuts Extension]()
--   [AltShortcuts Frontend]()
+-   [Shortcuts Extension](https://github.com/MVARUNREDDY8203/altshortcuts/tree/main/shortcuts)
+-   [AltShortcuts Frontend](https://github.com/MVARUNREDDY8203/altshortcuts/tree/main/altshortcuts_frontend)
 
 ## 🐞 What can you contribute?
 
