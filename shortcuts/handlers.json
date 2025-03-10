@@ -230,7 +230,6 @@
     "internshala.com": {
         "search": ["#select_category_chosen > ul > li > input"]
     },
-
     "tailwindcss.com": {
         "search": [
             "body > div.isolate > div > div.fixed.inset-x-0.top-0.z-10.border-b.border-gray-950\\/5.dark\\:border-white\\/10 > div:nth-child(1) > div > div.flex.items-center.gap-6.max-md\\:hidden > button"
