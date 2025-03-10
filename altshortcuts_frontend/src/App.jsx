@@ -215,7 +215,6 @@ const shortcuts = [
     {
         key: "ALT + S",
         desc: "Jump to Search",
-        src: "./alt_s.webm",
         iframe: (
             <iframe
                 width="560"
@@ -232,7 +231,6 @@ const shortcuts = [
     {
         key: "ALT + W",
         desc: "Jump to Write/Compose",
-        src: "./alt_w.webm",
         iframe: (
             <iframe
                 width="560"
@@ -261,12 +259,10 @@ const shortcuts = [
                 allowfullscreen
             ></iframe>
         ),
-        src: "/alt_r.webm",
     },
     {
         key: "ALT + U",
         desc: "Scroll to the top of the page",
-        src: "/alt_v_u.webm",
         iframe: (
             <iframe
                 width="560"
@@ -283,7 +279,6 @@ const shortcuts = [
     {
         key: "ALT + V",
         desc: "Scroll to the bottom of the page",
-        src: "/alt_v_u.webm",
         iframe: (
             <iframe
                 width="560"
@@ -312,12 +307,10 @@ const shortcuts = [
                 allowfullscreen
             ></iframe>
         ),
-        src: "/alt_t.webm",
     },
     {
         key: "ALT + G",
         desc: "Open Google Homepage and close all other tabs",
-        src: "/alt_g.webm",
         iframe: (
             <iframe
                 width="560"
@@ -334,7 +327,6 @@ const shortcuts = [
     {
         key: "ALT + D",
         desc: "Duplicate tab",
-        src: "/alt_d.webm",
         iframe: (
             <iframe
                 width="560"
@@ -351,7 +343,6 @@ const shortcuts = [
     {
         key: "ALT + M",
         desc: "Mute / Unmute tab",
-        src: "/alt_m.webm",
         iframe: (
             <iframe
                 width="560"
@@ -368,7 +359,6 @@ const shortcuts = [
     {
         key: "ALT + P",
         desc: "Pin / Unpin tab",
-        src: "/alt_p.webm",
         iframe: (
             <iframe
                 width="560"
@@ -459,58 +449,51 @@ function Section1() {
         }
     }
     return (
-        <div className="bg-white h-screen">
-            <div className="bg-white mx-20">
-                <div className="flex justify-between items-center mx-auto rounded-3xl px-30 py-15 text-white blackbgsection1">
-                    <div>
-                        <span className="text-3xl text-neutral-200 font-bold block tracking-wider color-white">
-                            Don't lift your hands off the keyboard, use
-                        </span>
-                        <span
-                            className="mb-4 text-7xl font-extrabold block text-transparent bg-clip-text 
+        <div className="bg-white h-screen mx-20">
+            <div className="flex justify-between items-center mx-auto rounded-3xl px-30 py-15 text-white bg-gradient-to-r from-[#121416] via-[#282828] to-[#121416]">
+                <div>
+                    <span className="text-3xl text-neutral-200 font-bold block tracking-wider color-white">
+                        Don't lift your hands off the keyboard, use
+                    </span>
+                    <span
+                        className="mb-4 text-7xl font-extrabold block text-transparent bg-clip-text 
                             bg-[linear-gradient(to_right,#A78BFA_0%,#E1AB00_100%)]"
-                        >
-                            ALT Shortcuts
+                    >
+                        ALT Shortcuts
+                    </span>
+                    {texts1.map((t1, idx) => (
+                        <span className="text-gray-400 block -mt-4" key={idx}>
+                            {t1}
                         </span>
-                        {texts1.map((t1, idx) => (
-                            <span
-                                className="text-gray-400 block -mt-4"
-                                key={idx}
-                            >
-                                {t1}
-                            </span>
-                        ))}
-                        <div className="flex mt-4 text-2xl">
-                            <a
-                                href="https://chromewebstore.google.com/detail/alt-shortcuts/pahfhkipajanpngdindidihnplfkldjp"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex flex-col items-center bg-green-500 text-black rounded-xl px-6 py-0.4 font-medium transition-all duration-150 hover:tracking-wider"
-                            >
-                                Download Extension
-                            </a>
-                        </div>
+                    ))}
+                    <div className="flex mt-4 text-2xl">
+                        <a
+                            href="https://chromewebstore.google.com/detail/alt-shortcuts/pahfhkipajanpngdindidihnplfkldjp"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex flex-col items-center bg-green-500 text-black rounded-xl px-6 py-0.4 font-medium transition-all duration-150 hover:tracking-wider"
+                        >
+                            Download Extension
+                        </a>
                     </div>
+                </div>
 
-                    {/* Shortcuts */}
-                    <div className="bg-white text-black rounded-3xl py-10 px-10">
-                        {shortcuts.map((s, idx) => {
-                            return (
-                                <div
-                                    key={idx}
-                                    className="mt-[0.80rem] max-h-[2rem] cursor-pointer transition-transform duration-150 hover:scale-105 active:scale-95"
-                                    onClick={() => scrollToShortcut(idx)}
-                                >
-                                    <span className="text-2xl font-medium bg-neutral-300 px-3 rounded-md border border-gray shadow-[0.20rem_0.20rem_0_#808080]">
-                                        {s.key}
-                                    </span>
-                                    <span className="text-2xl ml-5">
-                                        {s.desc}
-                                    </span>
-                                </div>
-                            );
-                        })}
-                    </div>
+                {/* Shortcuts */}
+                <div className="bg-white text-black rounded-3xl py-10 px-10">
+                    {shortcuts.map((s, idx) => {
+                        return (
+                            <div
+                                key={idx}
+                                className="mt-[0.80rem] max-h-[2rem] cursor-pointer transition-transform duration-150 hover:scale-105 active:scale-95"
+                                onClick={() => scrollToShortcut(idx)}
+                            >
+                                <span className="text-2xl font-medium bg-neutral-300 px-3 rounded-md border border-gray shadow-[0.20rem_0.20rem_0_#808080]">
+                                    {s.key}
+                                </span>
+                                <span className="text-2xl ml-5">{s.desc}</span>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </div>
@@ -763,11 +746,9 @@ function Section5() {
     return (
         <>
             <div className="bg-white mx-20 mt-30">
-                <div className="flex justify-between items-center mx-auto rounded-3xl px-30 py-15 text-white blackbgsection1">
+                <div className="flex justify-between items-center mx-auto rounded-3xl px-30 py-15 text-white bg-gradient-to-r from-[#121416] via-[#282828] to-[#121416]">
                     <div>
                         <span
-                            //                 className="text-transparent bg-clip-text
-                            //    bg-[linear-gradient(to_right,#A78BFA_0%,#E1C74A_100%)]"
                             style={{
                                 fontSize: "14rem",
                             }}
