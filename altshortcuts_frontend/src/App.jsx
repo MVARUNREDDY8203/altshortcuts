@@ -442,65 +442,66 @@ function Section1() {
         "Navigate Chrome faster than ever",
         "Become more productive",
         "with powerful shortcuts",
-        // "Quick Setup",
         "Try It Now!",
     ];
+    function scrollToShortcut(idx) {
+        const targetElement = document.getElementById(`shortcut-${idx}`);
+        if (targetElement) {
+            targetElement.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
 
+            // Simulate clicking to open the accordion
+            setTimeout(() => {
+                targetElement.click();
+            }, 300);
+        }
+    }
     return (
         <div className="bg-white h-screen">
             <div className="bg-white mx-20">
-                {/* black bg */}
                 <div className="flex justify-between items-center mx-auto rounded-3xl px-30 py-15 text-white blackbgsection1">
-                    {/* Left side CTA and intro */}
                     <div>
                         <span className="text-3xl text-neutral-200 font-bold block tracking-wider color-white">
-                            don't lift your hands off the keyboard, use
+                            Don't lift your hands off the keyboard, use
                         </span>
                         <span
-                            style={{}}
                             className="mb-4 text-7xl font-extrabold block text-transparent bg-clip-text 
-               bg-[linear-gradient(to_right,#A78BFA_0%,#E1AB00_100%)]"
+                            bg-[linear-gradient(to_right,#A78BFA_0%,#E1AB00_100%)]"
                         >
                             ALT Shortcuts
                         </span>
-                        {texts1.map((t1, idx) => {
-                            return (
-                                <span
-                                    className="text-gray-400 block -mt-4"
-                                    key={idx}
-                                >
-                                    {t1}
-                                </span>
-                            );
-                        })}
+                        {texts1.map((t1, idx) => (
+                            <span
+                                className="text-gray-400 block -mt-4"
+                                key={idx}
+                            >
+                                {t1}
+                            </span>
+                        ))}
                         <div className="flex mt-4 text-2xl">
                             <a
                                 href="https://chromewebstore.google.com/detail/alt-shortcuts/pahfhkipajanpngdindidihnplfkldjp"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className=" flex flex-col items-center bg-green-500 text-black rounded-xl px-6 py-0.4 font-medium transition-all duration-150 hover:tracking-wider"
+                                className="flex flex-col items-center bg-green-500 text-black rounded-xl px-6 py-0.4 font-medium transition-all duration-150 hover:tracking-wider"
                             >
                                 Download Extension
                             </a>
-                            {/* <a
-                                href="https://github.com/MVARUNREDDY8203/altshortcuts"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="ml-3 flex items-center bg-green-500 text-black rounded-xl px-6 font-medium transition-all duration-150 hover:tracking-wider"
-                            >
-                                Github
-                            </a> */}
                         </div>
                     </div>
+
                     {/* Shortcuts */}
                     <div className="bg-white text-black rounded-3xl py-10 px-10">
                         {shortcuts.map((s, idx) => {
                             return (
                                 <div
                                     key={idx}
-                                    className="mt-[0.80rem] max-h-[2rem]"
+                                    className="mt-[0.80rem] max-h-[2rem] cursor-pointer transition-transform duration-150 hover:scale-105 active:scale-95"
+                                    onClick={() => scrollToShortcut(idx)}
                                 >
-                                    <span className="text-2xl font-medium rem bg-neutral-300 px-3 rounded-md cursor-pointer border border-gray shadow-[0.20rem_0.20rem_0_#808080]">
+                                    <span className="text-2xl font-medium bg-neutral-300 px-3 rounded-md border border-gray shadow-[0.20rem_0.20rem_0_#808080]">
                                         {s.key}
                                     </span>
                                     <span className="text-2xl ml-5">
@@ -563,12 +564,9 @@ function Section2() {
 function Section3() {
     const [openIdx, setOpenIdx] = useState(null);
     function handleTileClick(idx) {
-        if (openIdx == idx) {
-            setOpenIdx(null);
-        } else {
-            setOpenIdx(idx);
-        }
+        setOpenIdx((prev) => (prev === idx ? null : idx));
     }
+
     return (
         <div id="shortcuts" className="flex-col items-center relative">
             <div
@@ -577,41 +575,26 @@ function Section3() {
                 }}
                 className="hidden md:block relative text-[23rem] font-extrabold -mb-67 z-0 text-center w-full"
             >
-                SHORCUTS
+                SHORTCUTS
             </div>
 
-            {/* Your existing accordion code - unchanged */}
             <div className="relative z-10 bg-zinc-200 ">
                 {shortcuts.map((item, idx) => {
-                    const isOpen = openIdx == idx;
+                    const isOpen = openIdx === idx;
                     return (
                         <div
                             key={idx}
-                            className={`
-                                ${
-                                    isOpen
-                                        ? "bg-black text-white min-h-[20rem] text-8xl"
-                                        : ""
-                                }
-                                border
-                                transiton-all
-                                duration-200
-                                border-black
-                                px-50
-                                cursor-pointer flex-col w-full text-3xl hover:bg-black hover:text-white 
-                            `}
+                            id={`shortcut-${idx}`} // Add unique IDs to scroll to
+                            className={`border transition-all duration-200 border-black px-50 cursor-pointer flex-col w-full text-3xl hover:bg-black hover:text-white ${
+                                isOpen
+                                    ? "bg-black text-white min-h-[20rem] text-8xl"
+                                    : ""
+                            }`}
                             onClick={() => handleTileClick(idx)}
                         >
                             <div>{item.desc}</div>
-                            {true && isOpen && (
+                            {isOpen && (
                                 <div className="mb-8">{item.iframe}</div>
-                            )}
-                            {false && isOpen && (
-                                <video
-                                    className="mb-8"
-                                    width={"500"}
-                                    src={item.src}
-                                ></video>
                             )}
                         </div>
                     );
