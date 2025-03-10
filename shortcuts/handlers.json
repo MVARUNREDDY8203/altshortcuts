@@ -41,8 +41,12 @@
     "mail.google.com": {
         "search": ["input[aria-label='Search mail']"],
         "write": [
-            "body > div:nth-child(24) > div.nH > div > div.nH.aqk.aql.bkL > div.aeN.WR.baA.nH.oy8Mbf > div.aic > div > div"
+            "body > div:nth-child(24) > div.nH > div > div.nH.aqk.aql.bkL > div.aeN.WR.baA.nH.oy8Mbf > div.aic > div > div",
+            "body > div:nth-child(28) > div.nH > div > div.nH.aqk.aql.bkL > div.aqn.aIH.nH.oy8Mbf.apV > div.aBO > div.aic > div > div"
         ]
+    },
+    "www.netflix.com": {
+        "search": ["button.searchTab"]
     },
     "chatgpt.com": {
         "search": ["button[aria-label='Ctrl K']"],
