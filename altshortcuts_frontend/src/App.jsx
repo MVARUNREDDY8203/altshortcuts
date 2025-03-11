@@ -13,10 +13,10 @@ function App() {
         let waitTime = 0;
         if (source === "install") {
             setInitState(0);
-            waitTime = 0;
+            waitTime = 10500;
         } else {
             setInitState(10);
-            waitTime = 0;
+            waitTime = 10500;
         }
         const timer = setTimeout(() => setInitState(33), waitTime);
         return () => clearTimeout(timer);
