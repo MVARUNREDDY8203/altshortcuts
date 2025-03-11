@@ -13,10 +13,10 @@ function App() {
         let waitTime = 0;
         if (source === "install") {
             setInitState(0);
-            waitTime = 10500;
+            waitTime = 0;
         } else {
             setInitState(10);
-            waitTime = 10500;
+            waitTime = 0;
         }
         const timer = setTimeout(() => setInitState(33), waitTime);
         return () => clearTimeout(timer);
@@ -379,7 +379,7 @@ function Header() {
         document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     }
     return (
-        <div className="flex justify-between items-center px-20  h-15 bg-white">
+        <div className="flex justify-between items-center w-7xl mx-auto h-15 bg-white">
             <div className="text-4xl">ALT Shortcuts</div>
             <div className="flex text-3xl">
                 <div
@@ -449,7 +449,7 @@ function Section1() {
         }
     }
     return (
-        <div className="bg-white h-screen mx-20">
+        <div className="bg-white w-7xl mx-auto">
             <div className="flex justify-between items-center mx-auto rounded-3xl px-30 py-15 text-white bg-gradient-to-r from-[#121416] via-[#282828] to-[#121416]">
                 <div>
                     <span className="text-3xl text-neutral-200 font-bold block tracking-wider color-white">
@@ -509,19 +509,13 @@ function Section2() {
     return (
         <div
             id="setup"
-            className="flex justify-between mx-50 mt-60 mb-40 items-center"
+            className="w-7xl px-30 flex justify-between mx-auto mt-60 mb-40 items-center"
         >
             <div>
-                {/* <video
-                    src={"/config-cut.webm"}
-                    width="500"
-                    height="300"
-                    controls="controls"
-                /> */}
                 <div>
                     <iframe
-                        width="560"
-                        height="315"
+                        width="445"
+                        height="250"
                         src="https://www.youtube.com/embed/HUYW3dcq0tg?si=orzd4EGXF3gJOT1Q"
                         title="YouTube video player"
                         frameborder="0"
@@ -532,7 +526,7 @@ function Section2() {
                 </div>
             </div>
             <div>
-                <span className="text-[6rem]">SetUp and Usage</span>
+                <span className="text-8xl">SetUp and Usage</span>
                 {texts1.map((t, idx) => {
                     return (
                         <span className="block -mt-2 text-center" key={idx}>
@@ -549,14 +543,31 @@ function Section3() {
     function handleTileClick(idx) {
         setOpenIdx((prev) => (prev === idx ? null : idx));
     }
+    const [isWideScreen, setIsWideScreen] = useState(
+        typeof window !== "undefined" && window.innerWidth >= 1280
+    );
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsWideScreen(window.innerWidth >= 1280);
+        };
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     return (
-        <div id="shortcuts" className="flex-col items-center relative">
+        <div
+            id="shortcuts"
+            className={`flex-col items-center justify-center relative ${
+                window.screen.width >= 1280 ? "w-full" : "w-7xl"
+            }`}
+        >
             <div
                 style={{
                     background: "linear-gradient(0deg, #828282, #FFFFFF)",
                 }}
-                className="hidden md:block relative text-[23rem] font-extrabold -mb-67 z-0 text-center w-full"
+                className="hidden md:block relative text-[23rem]  font-extrabold -mb-67 z-0 text-center"
             >
                 SHORTCUTS
             </div>
@@ -568,16 +579,20 @@ function Section3() {
                         <div
                             key={idx}
                             id={`shortcut-${idx}`} // Add unique IDs to scroll to
-                            className={`border transition-all duration-200 border-black px-50 cursor-pointer flex-col w-full text-3xl hover:bg-black hover:text-white ${
+                            className={`border transition-all duration-200 border-black cursor-pointer flex-col text-3xl hover:bg-black hover:text-white ${
                                 isOpen
                                     ? "bg-black text-white min-h-[20rem] text-8xl"
                                     : ""
                             }`}
                             onClick={() => handleTileClick(idx)}
                         >
-                            <div>{item.desc}</div>
+                            <div className="max-w-7xl px-20 mx-auto">
+                                {item.desc}
+                            </div>
                             {isOpen && (
-                                <div className="mb-8">{item.iframe}</div>
+                                <div className="w-7xl px-20 mx-auto mb-8">
+                                    {item.iframe}
+                                </div>
                             )}
                         </div>
                     );
@@ -591,7 +606,7 @@ function Section4() {
         <>
             <div
                 id="about"
-                className=" flex px-50 pt-40"
+                className="flex w-7xl items-center justify-center mx-auto pt-40"
                 style={
                     {
                         // width: "90%",
@@ -646,53 +661,8 @@ function Section4() {
                 <div className="flex w-[40rem] justify-center items-center">
                     <span className="text-[15rem]">About.</span>
                 </div>
-                {/* <div
-                    style={{
-                        backgroundColor: "#A799FF",
-                        borderRadius: "20px",
-                        boxSizing: "border-box",
-                        padding: "40px",
-                        marginLeft: "40px",
-                    }}
-                >
-                    <span
-                        style={{
-                            fontSize: "36px",
-                            display: "block",
-                            fontWeight: "600",
-                            letterSpacing: "5px",
-                        }}
-                    >
-                        How does it work?
-                    </span>
-                    <span
-                        style={{
-                            display: "block",
-                            lineHeight: "20px",
-                            textAlign: "justify",
-                            fontWeight: "400",
-                        }}
-                    >
-                        <br></br>
-                        1. The Search / Write Focus: Popular websites like
-                        ChatGPT, Reddit, X, Instagram which have the Search/
-                        Input fields, we visit them, inspect their input/search
-                        fields manually :: right click :: copy the 'JS path' and
-                        extract the selectors.
-                        <br></br>
-                        <br></br>
-                        2. New tab to the right/left, Close tab: pretty simple
-                        implementation, just query the index of the current tab
-                        and then create a new tab at index-1 / index + 1 or
-                        delete tab at index
-                        <br></br>
-                        <br></br>
-                        3. Switch to the next / prev tab: actually provided by
-                        default by Chrome, most people don't know about it.
-                    </span>
-                </div> */}
             </div>
-            <div className="px-50 flex justify-between text-neutral-800 ">
+            <div className="w-7xl mx-auto px-20 flex justify-between text-neutral-800 ">
                 <div className="mt-10 bg-[#edd088] rounded-[20px] box-border p-10 w-full">
                     <span className="text-6xl block font-semibold tracking-widest">
                         Problems, Solutions & Why Open Source?
@@ -745,8 +715,8 @@ function Section4() {
 function Section5() {
     return (
         <>
-            <div className="bg-white mx-20 mt-30">
-                <div className="flex justify-between items-center mx-auto rounded-3xl px-30 py-15 text-white bg-gradient-to-r from-[#121416] via-[#282828] to-[#121416]">
+            <div className="bg-white w-7xl mx-auto mt-30">
+                <div className="flex justify-between items-center mx-auto rounded-3xl px-20 py-15 text-white bg-gradient-to-r from-[#121416] via-[#282828] to-[#121416]">
                     <div>
                         <span
                             style={{
